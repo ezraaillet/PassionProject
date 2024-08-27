@@ -1,0 +1,26 @@
+.header {
+  background-color: rgb(0, 110, 255);
+  color: white;
+  height: 50px;
+  overflow-y: hidden;
+}
+
+.header-text {
+  margin-left: 20px;
+  margin-bottom: 0px;
+  font-size: 30px;
+}
+
+.logout {
+  width: 60px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 200px;
+}
+
+.username {
+  margin-top: 10px;
+}
