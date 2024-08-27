@@ -3,6 +3,7 @@ import "../styles/landing-page.css";
 
 import { Col, Row } from "react-bootstrap";
 
+import AccountTypes from "./account-type";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LandingPage() {
@@ -18,22 +19,7 @@ export default function LandingPage() {
         </div>
       )}
 
-      {isAuthenticated && !isLoading && (
-        <div className="account-type-select">
-          <Row>
-            <Col md={6}>
-              <button className="account-type-button">
-                Looking for a sponsor
-              </button>
-            </Col>
-            <Col md={6}>
-              <button className="account-type-button">
-                Looking to sponsor
-              </button>
-            </Col>
-          </Row>
-        </div>
-      )}
+      {isAuthenticated && !isLoading && <AccountTypes />}
     </div>
   );
 }
