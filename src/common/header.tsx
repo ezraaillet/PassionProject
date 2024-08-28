@@ -13,16 +13,21 @@ export default function Header() {
         <Col md={9}>
           <div className="header-text">Passion Project</div>
         </Col>
-        <Col md={3}>
+        <Col md={2}>
           {isAuthenticated && !isLoading && user && (
             <div className="d-flex justify-content-space-evenly">
               <p className="username">Welcome, {user.nickname}!</p>
-              <button className="logout" onClick={() => logout()}>
+              {/* <button className="logout" onClick={() => logout()}>
                 Logout
-              </button>
+              </button> */}
             </div>
           )}
         </Col>
+        {isAuthenticated && !isLoading && (
+          <Col md={1} className="button-section" onClick={() => logout()}>
+            <div className="logout">Logout</div>
+          </Col>
+        )}
       </Row>
     </div>
   );
