@@ -9,24 +9,24 @@ export default function Header() {
 
   return (
     <div className="header">
-      <Row>
-        <Col md={9}>
+      <Row className="align-items-center">
+        <Col xs={6} md={9}>
           <div className="header-text">Passion Project</div>
         </Col>
-        <Col md={2}>
-          {isAuthenticated && !isLoading && user && (
-            <div className="d-flex justify-content-space-evenly">
-              <p className="username">Welcome, {user.nickname}!</p>
-              {/* <button className="logout" onClick={() => logout()}>
-                Logout
-              </button> */}
-            </div>
-          )}
-        </Col>
-        {isAuthenticated && !isLoading && (
-          <Col md={1} className="button-section" onClick={() => logout()}>
-            <div className="logout">Logout</div>
-          </Col>
+        {isAuthenticated && !isLoading && user && (
+          <>
+            <Col xs={3} md={2} className="username-section">
+              <div className="username">Welcome, {user.nickname}!</div>
+            </Col>
+            <Col
+              xs={3}
+              md={1}
+              className="button-section"
+              onClick={() => logout()}
+            >
+              <div className="logout">Logout</div>
+            </Col>
+          </>
         )}
       </Row>
     </div>

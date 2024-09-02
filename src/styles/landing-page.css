@@ -3,3 +3,86 @@
   justify-content: center;
   margin-top: 300px;
 }
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.sponsee-info-card {
+  width: 500px;
+}
+
+.sponsee-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-buttons-container {
+  margin-top: 20px;
+}
+
+.small-button {
+  width: 100px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: rgb(212, 81, 61);
+  color: white;
+  border: none;
+}
+
+.small-button:hover {
+  background-color: rgb(224, 120, 104);
+}
+
+.card-label {
+  margin-bottom: 0px;
+}
+
+.card-form-group {
+  margin-bottom: 15px;
+}
+
+/* Remove blue outline on focus */
+.card-form-group select:focus,
+.card-form-group input:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgb(212, 81, 61);
+}
+
+.is-invalid {
+  border-color: red !important;
+  box-shadow: none !important;
+}
+
+.info-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  color: rgb(212, 81, 61);
+}

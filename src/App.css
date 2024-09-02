@@ -19,10 +19,3 @@ body {
   ); /* Light background color for the entire page */
   margin: 0; /* Remove default margin */
 }
-
-.progress-bar {
-  width: 90% !important;
-  /* margin-top: 20px;
-  color: rgb(212, 81, 61);
-  background-color: rgb(212, 81, 61); */
-}
