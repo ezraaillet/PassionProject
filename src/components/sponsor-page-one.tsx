@@ -11,46 +11,39 @@ import {
 import { FaInfoCircle } from "react-icons/fa";
 import { genders } from "../common/genders";
 import { states } from "../common/states";
+import { useSponsorWorkflowContext } from "../common/sponsor-workflow-context";
 import { useState } from "react";
 
 interface SponserWorkflowProps {
-  backClicked: () => void; // Type the function prop
+  backClicked: () => void;
+  nextClicked: () => void;
 }
 
-export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
-  const [formData, setFormData] = useState({
-    sponsorState: "",
-    sponsorZipcode: "",
-    sponsorGender: "",
-  });
+export default function SponsorPageOne({
+  backClicked,
+  nextClicked,
+}: SponserWorkflowProps) {
+  const sponsorWorkflowContext = useSponsorWorkflowContext();
 
-  const [formErrors, setFormErrors] = useState({
-    state: false,
-    zipcode: false,
-    gender: false,
-  });
-
-  const handleInputChange = (e: any) => {
-    const { id, value } = e.target as HTMLInputElement | HTMLSelectElement;
-    setFormData((prevState) => ({ ...prevState, [id]: value }));
-    setFormErrors((prevState) => ({ ...prevState, [id]: false }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
 
     const errors = {
-      state: !formData.sponsorState,
-      zipcode: !formData.sponsorZipcode,
-      gender: !formData.sponsorGender,
+      state: !sponsorWorkflowContext?.formData.sponsorState,
+      zipcode: !sponsorWorkflowContext?.formData.sponsorZipcode,
+      gender: !sponsorWorkflowContext?.formData.sponsorGender,
     };
 
-    setFormErrors(errors);
+    sponsorWorkflowContext?.setFormErrors(errors);
 
     const isValid = !Object.values(errors).includes(true);
 
     if (isValid) {
-      console.log("Form submitted successfully", formData);
+      console.log(
+        "Form submitted successfully",
+        sponsorWorkflowContext?.formData
+      );
+      nextClicked();
     } else {
       console.log("Please fill out all fields");
     }
@@ -60,10 +53,10 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
     <div className="sponsee-container">
       <Row className="mt-4">
         <Col>
-          <Card className="sponsee-info-card">
+          <Card className="info-card">
             <Card.Body>
               <Card.Title>Become a Sponsor</Card.Title>
-              <Form onSubmit={handleSubmit}>
+              <Form>
                 <Form.Group
                   controlId="sponsorState"
                   className="card-form-group"
@@ -71,9 +64,9 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
                   <Form.Label className="card-label">State</Form.Label>
                   <Form.Control
                     as="select"
-                    value={formData.sponsorState}
-                    onChange={handleInputChange}
-                    isInvalid={formErrors.state}
+                    value={sponsorWorkflowContext?.formData.sponsorState}
+                    onChange={sponsorWorkflowContext?.handleInputChange}
+                    isInvalid={sponsorWorkflowContext?.formErrors.state}
                   >
                     {states.map((state) => (
                       <option key={state.value} value={state.value}>
@@ -94,9 +87,9 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
                   <Form.Control
                     type="text"
                     placeholder="Enter your zipcode"
-                    value={formData.sponsorZipcode}
-                    onChange={handleInputChange}
-                    isInvalid={formErrors.zipcode}
+                    value={sponsorWorkflowContext?.formData.sponsorZipcode}
+                    onChange={sponsorWorkflowContext?.handleInputChange}
+                    isInvalid={sponsorWorkflowContext?.formErrors.zipcode}
                   />
                   <Form.Control.Feedback type="invalid">
                     Please enter your zipcode.
@@ -127,9 +120,9 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
                   </Form.Label>
                   <Form.Control
                     as="select"
-                    value={formData.sponsorGender}
-                    onChange={handleInputChange}
-                    isInvalid={formErrors.gender}
+                    value={sponsorWorkflowContext?.formData.sponsorGender}
+                    onChange={sponsorWorkflowContext?.handleInputChange}
+                    isInvalid={sponsorWorkflowContext?.formErrors.gender}
                   >
                     {genders.map((gender) => (
                       <option key={gender.value} value={gender.value}>
@@ -143,11 +136,13 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
                 </Form.Group>
 
                 <Row className="card-buttons-container">
-                  <Col onClick={backClicked} className="card-buttons">
-                    <button className="small-button">Back</button>
+                  <Col className="card-buttons">
+                    <button onClick={backClicked} className="small-button">
+                      Back
+                    </button>
                   </Col>
                   <Col className="card-buttons">
-                    <button className="small-button" type="submit">
+                    <button onClick={handleNext} className="small-button">
                       Next
                     </button>
                   </Col>

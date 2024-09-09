@@ -10,6 +10,8 @@ import {
 
 import { FaInfoCircle } from "react-icons/fa";
 import SponsorPageOne from "./sponsor-page-one";
+import SponsorPageTwo from "./sponsor-page-two";
+import { SponsorWorkflowProvider } from "../common/sponsor-workflow-context";
 import { genders } from "../common/genders";
 import { states } from "../common/states";
 import { useState } from "react";
@@ -21,5 +23,34 @@ interface SponserWorkflowProps {
 export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
   const [step, setStep] = useState(1);
 
-  return <>{step === 1 && <SponsorPageOne backClicked={backClicked} />}</>;
+  const handleBackClick = () => {
+    if (step === 1) {
+      backClicked();
+    } else {
+      setStep(step - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    setStep(step + 1);
+  };
+
+  return (
+    <>
+      <SponsorWorkflowProvider>
+        {step === 1 && (
+          <SponsorPageOne
+            backClicked={handleBackClick}
+            nextClicked={handleNextClick}
+          />
+        )}
+        {step === 2 && (
+          <SponsorPageTwo
+            backClicked={handleBackClick}
+            nextClicked={handleNextClick}
+          />
+        )}
+      </SponsorWorkflowProvider>
+    </>
+  );
 }

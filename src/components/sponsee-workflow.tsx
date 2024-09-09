@@ -60,7 +60,7 @@ export default function SponseeWorkflow({ backClicked }: SponseeWorkflowProps) {
     <div className="sponsee-container">
       <Row className="mt-4">
         <Col>
-          <Card className="sponsee-info-card">
+          <Card className="info-card">
             <Card.Body>
               <Card.Title>Find a Sponsor</Card.Title>
               <Form onSubmit={handleSubmit}>

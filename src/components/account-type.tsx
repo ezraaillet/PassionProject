@@ -27,7 +27,7 @@ export default function AccountTypes() {
                 onClick={() => handleAccountTypeSelect(1)}
                 className="account-type-button"
               >
-                Looking for a sponsor
+                I need a Sponsor
               </button>
             </Col>
             <Col md={6}>
@@ -35,7 +35,7 @@ export default function AccountTypes() {
                 onClick={() => handleAccountTypeSelect(2)}
                 className="account-type-button"
               >
-                Looking to sponsor
+                Become a Sponsor
               </button>
             </Col>
           </Row>
