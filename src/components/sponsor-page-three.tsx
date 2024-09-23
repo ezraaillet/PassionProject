@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
 
 import { useSponsorWorkflowContext } from "../common/sponsor-workflow-context";
 
@@ -15,7 +7,7 @@ interface SponserWorkflowProps {
   nextClicked: () => void;
 }
 
-export default function SponsorPageTwo({
+export default function SponsorPageThree({
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -52,54 +44,57 @@ export default function SponsorPageTwo({
           <Card className="info-card">
             <Card.Body>
               <Card.Title>
-                Become a Sponsor<span className="step">2/5</span>
+                Become a Sponsor<span className="step">3/5</span>
               </Card.Title>
               <Form>
-                <Form.Group controlId="sponsorName" className="card-form-group">
-                  <Form.Label className="card-label">Name</Form.Label>
+                <Form.Group controlId="sponsorAge" className="card-form-group">
+                  <Form.Label className="card-label">Age</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Name, Alias, or Initials"
-                    value={sponsorWorkflowContext?.formData.sponsorName}
+                    placeholder="Your Age"
+                    value={sponsorWorkflowContext?.formData.sponsorAge}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.name}
+                    isInvalid={sponsorWorkflowContext?.formErrors.age}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    Please enter your name.
+                    Please enter a valid age.
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group
-                  controlId="sponsorPhone"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Phone Number</Form.Label>
+                <Form.Group controlId="sponsorJob" className="card-form-group">
+                  <Form.Label className="card-label">Job</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your phone number"
-                    value={sponsorWorkflowContext?.formData.sponsorPhone}
+                    placeholder="Enter your job"
+                    value={sponsorWorkflowContext?.formData.sponsorJob}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.phone}
+                    isInvalid={sponsorWorkflowContext?.formErrors.job}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please enter your phone number.
+                    Please enter your job.
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group
-                  controlId="sponsorMotto"
+                  controlId="sponsorNumberOfSponsees"
                   className="card-form-group"
                 >
-                  <Form.Label className="card-label">Motto</Form.Label>
+                  <Form.Label className="card-label">
+                    Max number of sponsees
+                  </Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your motto"
-                    value={sponsorWorkflowContext?.formData.sponsorMotto}
+                    placeholder="Max number of sponsees"
+                    value={
+                      sponsorWorkflowContext?.formData.sponsorNumberOfSponsees
+                    }
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.motto}
+                    isInvalid={
+                      sponsorWorkflowContext?.formErrors.numberOfSponsees
+                    }
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    Please enter your motto.
+                    Please enter number of sponsees.
                   </Form.Control.Feedback>
                 </Form.Group>
 

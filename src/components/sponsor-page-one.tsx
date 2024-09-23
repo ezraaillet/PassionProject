@@ -55,7 +55,10 @@ export default function SponsorPageOne({
         <Col>
           <Card className="info-card">
             <Card.Body>
-              <Card.Title>Become a Sponsor</Card.Title>
+              <Card.Title>
+                Become a Sponsor<span className="step">1/5</span>
+              </Card.Title>
+
               <Form>
                 <Form.Group
                   controlId="sponsorState"

@@ -7,6 +7,12 @@ interface SponsorWorkflowFormData {
   sponsorName: string;
   sponsorPhone: string;
   sponsorMotto: string;
+  sponsorAge: string;
+  sponsorJob: string;
+  sponsorNumberOfSponsees: string;
+  sponsorBio: string;
+  sponsorAvailability: string;
+  sponsorFaith: string;
 }
 
 interface SponsorWorkflowFormErrors {
@@ -16,6 +22,12 @@ interface SponsorWorkflowFormErrors {
   name: boolean;
   phone: boolean;
   motto: boolean;
+  age: boolean;
+  job: boolean;
+  numberOfSponsees: boolean;
+  bio: boolean;
+  availability: boolean;
+  faith: boolean;
 }
 
 const SponsorWorkflowContext = createContext<{
@@ -33,6 +45,12 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     sponsorName: "",
     sponsorPhone: "",
     sponsorMotto: "",
+    sponsorAge: "",
+    sponsorJob: "",
+    sponsorNumberOfSponsees: "",
+    sponsorBio: "",
+    sponsorAvailability: "",
+    sponsorFaith: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -42,6 +60,12 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     name: false,
     phone: false,
     motto: false,
+    age: false,
+    job: false,
+    numberOfSponsees: false,
+    bio: false,
+    availability: false,
+    faith: false,
   });
 
   const handleInputChange = (e: any) => {

@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
 
 import { useSponsorWorkflowContext } from "../common/sponsor-workflow-context";
 
@@ -15,7 +7,7 @@ interface SponserWorkflowProps {
   nextClicked: () => void;
 }
 
-export default function SponsorPageTwo({
+export default function SponsorPageFour({
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -52,54 +44,54 @@ export default function SponsorPageTwo({
           <Card className="info-card">
             <Card.Body>
               <Card.Title>
-                Become a Sponsor<span className="step">2/5</span>
+                Become a Sponsor<span className="step">4/5</span>
               </Card.Title>
               <Form>
-                <Form.Group controlId="sponsorName" className="card-form-group">
-                  <Form.Label className="card-label">Name</Form.Label>
+                <Form.Group controlId="sponsorBio" className="card-form-group">
+                  <Form.Label className="card-label">Bio</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Name, Alias, or Initials"
-                    value={sponsorWorkflowContext?.formData.sponsorName}
+                    placeholder="A little about yourself"
+                    value={sponsorWorkflowContext?.formData.sponsorBio}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.name}
+                    isInvalid={sponsorWorkflowContext?.formErrors.bio}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    Please enter your name.
+                    Please enter a valid bio.
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group
-                  controlId="sponsorPhone"
+                  controlId="sponsorAvailability"
                   className="card-form-group"
                 >
-                  <Form.Label className="card-label">Phone Number</Form.Label>
+                  <Form.Label className="card-label">Availability</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your phone number"
-                    value={sponsorWorkflowContext?.formData.sponsorPhone}
+                    placeholder="Availability"
+                    value={sponsorWorkflowContext?.formData.sponsorAvailability}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.phone}
+                    isInvalid={sponsorWorkflowContext?.formErrors.availability}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please enter your phone number.
+                    Please enter your availability.
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group
-                  controlId="sponsorMotto"
+                  controlId="sponsorFaith"
                   className="card-form-group"
                 >
-                  <Form.Label className="card-label">Motto</Form.Label>
+                  <Form.Label className="card-label">Faith</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your motto"
-                    value={sponsorWorkflowContext?.formData.sponsorMotto}
+                    placeholder="Your Faith or Religion"
+                    value={sponsorWorkflowContext?.formData.sponsorFaith}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.motto}
+                    isInvalid={sponsorWorkflowContext?.formErrors.faith}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    Please enter your motto.
+                    Please enter your faith.
                   </Form.Control.Feedback>
                 </Form.Group>
 

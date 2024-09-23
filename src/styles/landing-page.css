@@ -93,3 +93,10 @@
   color: rgb(212, 81, 61);
   font-size: 30px;
 }
+
+.card-title .step {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 140px;
+  color: rgb(212, 81, 61);
+}

@@ -1,19 +1,8 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
-
-import { FaInfoCircle } from "react-icons/fa";
+import SponsorPageFour from "./sponsor-page-four";
 import SponsorPageOne from "./sponsor-page-one";
+import SponsorPageThree from "./sponsor-page-three";
 import SponsorPageTwo from "./sponsor-page-two";
 import { SponsorWorkflowProvider } from "../common/sponsor-workflow-context";
-import { genders } from "../common/genders";
-import { states } from "../common/states";
 import { useState } from "react";
 
 interface SponserWorkflowProps {
@@ -46,6 +35,18 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
         )}
         {step === 2 && (
           <SponsorPageTwo
+            backClicked={handleBackClick}
+            nextClicked={handleNextClick}
+          />
+        )}
+        {step === 3 && (
+          <SponsorPageThree
+            backClicked={handleBackClick}
+            nextClicked={handleNextClick}
+          />
+        )}
+        {step === 4 && (
+          <SponsorPageFour
             backClicked={handleBackClick}
             nextClicked={handleNextClick}
           />
