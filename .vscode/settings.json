@@ -1,7 +1,14 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#401C5B",
-        "titleBar.activeBackground": "#5A277F",
-        "titleBar.activeForeground": "#FCFAFE"
-    }
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#401C5B",
+    "titleBar.activeBackground": "#5A277F",
+    "titleBar.activeForeground": "#FCFAFE"
+  },
+  "azureFunctions.deploySubpath": "backend",
+  "azureFunctions.postDeployTask": "npm install (functions)",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.projectLanguageModel": 4,
+  "azureFunctions.preDeployTask": "npm prune (functions)"
 }
