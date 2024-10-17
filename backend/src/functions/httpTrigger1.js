@@ -4,7 +4,7 @@ const sendToCosmosDb = output.cosmosDB({
   databaseName: "PassionProjectMain",
   containerName: "users",
   createIfNotExists: false,
-  connection: "",
+  connection: "CosmosDBConnectionString",
 });
 
 app.http("HttpExampleToCosmosDB", {
