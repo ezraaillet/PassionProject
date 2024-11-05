@@ -13,6 +13,8 @@ interface SponsorWorkflowFormData {
   sponsorBio: string;
   sponsorAvailability: string;
   sponsorFaith: string;
+  sponsorTimeForSteps: string;
+  sponsorIntensityLevel: string;
 }
 
 interface SponsorWorkflowFormErrors {
@@ -28,6 +30,8 @@ interface SponsorWorkflowFormErrors {
   bio: boolean;
   availability: boolean;
   faith: boolean;
+  stepTime: boolean;
+  intensityLevel: boolean;
 }
 
 const SponsorWorkflowContext = createContext<{
@@ -51,6 +55,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     sponsorBio: "",
     sponsorAvailability: "",
     sponsorFaith: "",
+    sponsorTimeForSteps: "",
+    sponsorIntensityLevel: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -66,6 +72,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     bio: false,
     availability: false,
     faith: false,
+    stepTime: false,
+    intensityLevel: false,
   });
 
   const handleInputChange = (e: any) => {

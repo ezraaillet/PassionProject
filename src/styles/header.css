@@ -3,6 +3,8 @@
   color: white;
   height: 50px;
   overflow: hidden;
+  position: absolute;
+  width: 100%;
 }
 
 .header-text {
