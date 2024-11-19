@@ -5,9 +5,9 @@ export default function UserService() {
   const prodUrl: string = process.env.REACT_APP_PROD_API_URL!;
   const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
 
-  async function createUser(userToInsert: any) {
-    debugger;
+  async function createUser(userToInsert: any, userType: number) {
     userToInsert.email = user?.email;
+    userToInsert.userType = userType;
     try {
       const response = await fetch(`${prodUrl}/InsertUser`, {
         method: "POST",
@@ -44,6 +44,29 @@ export default function UserService() {
       return await response.json(); // Return the response data
     } catch (error) {
       console.error("Error fetching user:", error);
+      throw error;
+    }
+  }
+
+  async function getUsersByTypeAndState(userType: number, state: string) {
+    try {
+      const response = await fetch(
+        `${prodUrl}/GetUsersByTypeAndState?sponsorState=${state}&userType=${userType}&`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      return await response.json(); // Return the response data
+    } catch (error) {
+      console.error("Error fetching users:", error);
       throw error;
     }
   }

@@ -1,8 +1,8 @@
-import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context";
-import { useState } from "react";
-import UserService from "../../services/user-service";
 import SponseePageOne from "./sponsee-page-one";
 import SponseePageTwo from "./sponsee-page-two";
+import UserService from "../../services/user-service";
+import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context";
+import { useState } from "react";
 
 interface SponseeWorkflowProps {
   backClicked: () => void; // Type the function prop
@@ -25,7 +25,7 @@ export default function SponseeWorkflow({ backClicked }: SponseeWorkflowProps) {
     setStep(step + 1);
 
     if (step === 2) {
-      createUser(sponseeWorkflowContext?.formData);
+      createUser(sponseeWorkflowContext?.formData, 1);
     }
   };
 

@@ -7,7 +7,7 @@ interface SponserWorkflowProps {
   nextClicked: () => void;
 }
 
-export default function SponsorPageFour({
+export default function SponsorPageFive({
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {

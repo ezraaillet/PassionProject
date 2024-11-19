@@ -26,7 +26,6 @@ export default function SponseePageOne({
   const sponseeWorkflowContext = useSponseeWorkflowContext();
 
   const handleNext = (e: React.FormEvent) => {
-    debugger;
     e.preventDefault();
 
     const errors = {

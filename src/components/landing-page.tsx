@@ -2,12 +2,12 @@ import "../styles/buttons.css";
 import "../styles/landing-page.css";
 
 import { Col, Row, Spinner } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 import AccountTypes from "./account-type";
-import { useAuth0 } from "@auth0/auth0-react";
-import UserService from "../services/user-service";
-import { useEffect, useState } from "react";
 import UserSearch from "./user-search";
+import UserService from "../services/user-service";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LandingPage() {
   const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();

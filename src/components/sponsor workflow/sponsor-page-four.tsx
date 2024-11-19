@@ -17,9 +17,9 @@ export default function SponsorPageFour({
     e.preventDefault();
 
     const errors = {
-      name: !sponsorWorkflowContext?.formData.sponsorName,
-      phone: !sponsorWorkflowContext?.formData.sponsorPhone,
-      motto: !sponsorWorkflowContext?.formData.sponsorMotto,
+      name: !sponsorWorkflowContext?.formData.sponsorBio,
+      phone: !sponsorWorkflowContext?.formData.sponsorAvailability,
+      motto: !sponsorWorkflowContext?.formData.sponsorFaith,
     };
 
     sponsorWorkflowContext?.setFormErrors(errors);

@@ -1,12 +1,12 @@
+import SponsorPageFive from "./sponsor-page-five";
+import SponsorPageFour from "./sponsor-page-four";
+import SponsorPageOne from "./sponsor-page-one";
+import SponsorPageThree from "./sponsor-page-three";
+import SponsorPageTwo from "./sponsor-page-two";
+import UserSearch from "../user-search";
+import UserService from "../../services/user-service";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 import { useState } from "react";
-import UserService from "../../services/user-service";
-import UserSearch from "../user-search";
-import SponsorPageOne from "./sponsor-page-one";
-import SponsorPageTwo from "./sponsor-page-two";
-import SponsorPageThree from "./sponsor-page-three";
-import SponsorPageFour from "./sponsor-page-five";
-import SponsorPageFive from "./sponsor-page-five";
 
 interface SponserWorkflowProps {
   backClicked: () => void; // Type the function prop
@@ -29,7 +29,7 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
     setStep(step + 1);
 
     if (step === 5) {
-      createUser(sponsorWorkflowContext?.formData);
+      createUser(sponsorWorkflowContext?.formData, 2);
     }
   };
 
