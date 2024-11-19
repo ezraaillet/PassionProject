@@ -6,6 +6,7 @@ export default function UserService() {
   const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
 
   async function createUser(userToInsert: any) {
+    debugger;
     userToInsert.email = user?.email;
     try {
       const response = await fetch(`${prodUrl}/InsertUser`, {

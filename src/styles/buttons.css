@@ -17,9 +17,9 @@
 
 .login-button-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 300px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
 }
 
 .account-type-button {

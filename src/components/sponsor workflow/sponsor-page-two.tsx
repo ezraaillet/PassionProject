@@ -1,13 +1,21 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
 
-import { useSponsorWorkflowContext } from "../common/sponsor-workflow-context";
+import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
   backClicked: () => void;
   nextClicked: () => void;
 }
 
-export default function SponsorPageFour({
+export default function SponsorPageTwo({
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -17,8 +25,9 @@ export default function SponsorPageFour({
     e.preventDefault();
 
     const errors = {
-      stepTime: !sponsorWorkflowContext?.formData.sponsorTimeForSteps,
-      intensityLevel: !sponsorWorkflowContext?.formData.sponsorIntensityLevel,
+      name: !sponsorWorkflowContext?.formData.sponsorName,
+      phone: !sponsorWorkflowContext?.formData.sponsorPhone,
+      motto: !sponsorWorkflowContext?.formData.sponsorMotto,
     };
 
     sponsorWorkflowContext?.setFormErrors(errors);
@@ -43,48 +52,54 @@ export default function SponsorPageFour({
           <Card className="info-card">
             <Card.Body>
               <Card.Title>
-                Become a Sponsor<span className="step">5/5</span>
+                Become a Sponsor<span className="step">2/5</span>
               </Card.Title>
               <Form>
-                <Form.Group
-                  controlId="sponsorTimeForSteps"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">
-                    Time to complete steps
-                  </Form.Label>
+                <Form.Group controlId="sponsorName" className="card-form-group">
+                  <Form.Label className="card-label">Name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Time taken to get through steps"
-                    value={sponsorWorkflowContext?.formData.sponsorTimeForSteps}
+                    placeholder="Name, Alias, or Initials"
+                    value={sponsorWorkflowContext?.formData.sponsorName}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.stepTime}
+                    isInvalid={sponsorWorkflowContext?.formErrors.name}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    Please enter a time range.
+                    Please enter your name.
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group
-                  controlId="sponsorIntensityLevel"
+                  controlId="sponsorPhone"
                   className="card-form-group"
                 >
-                  <Form.Label className="card-label">
-                    Intensity Level
-                  </Form.Label>
+                  <Form.Label className="card-label">Phone Number</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Your intensity level"
-                    value={
-                      sponsorWorkflowContext?.formData.sponsorIntensityLevel
-                    }
+                    placeholder="Enter your phone number"
+                    value={sponsorWorkflowContext?.formData.sponsorPhone}
                     onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={
-                      sponsorWorkflowContext?.formErrors.intensityLevel
-                    }
+                    isInvalid={sponsorWorkflowContext?.formErrors.phone}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please enter your intensity level.
+                    Please enter your phone number.
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group
+                  controlId="sponsorMotto"
+                  className="card-form-group"
+                >
+                  <Form.Label className="card-label">Motto</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your motto"
+                    value={sponsorWorkflowContext?.formData.sponsorMotto}
+                    onChange={sponsorWorkflowContext?.handleInputChange}
+                    isInvalid={sponsorWorkflowContext?.formErrors.motto}
+                  ></Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    Please enter your motto.
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -100,7 +115,7 @@ export default function SponsorPageFour({
                       className="small-button"
                       type="submit"
                     >
-                      Finish
+                      Next
                     </button>
                   </Col>
                 </Row>
