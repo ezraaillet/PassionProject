@@ -1,8 +1,54 @@
-.user-search-container {
-  /* background-color: red; */
-  width: 100vw;
-  height: 100vh;
+/* Page container to center everything */
+.page-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  min-height: 100vh; /* Ensure full viewport height */
+  margin-top: 50px; /* Account for header height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* User search title */
+.user-search-title {
+  font-size: 2rem;
+  margin-bottom: 20px; /* Add spacing below the title */
+  text-align: center;
+}
+
+/* Card container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards horizontally */
+  gap: 30px; /* Add spacing between cards */
+}
+
+/* Card styling */
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 600px; /* Make the card wider */
+  text-align: left; /* Align text to the left for better readability */
+}
+
+/* Sponsor name styling */
+.card h2 {
+  color: rgb(212, 81, 61); /* Match the header's color for the name */
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Links */
+.card a {
+  color: rgb(33, 150, 243); /* Blue color for links */
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
 }

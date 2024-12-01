@@ -29,9 +29,7 @@ export default function SponseePageTwo({
     e.preventDefault();
 
     const errors = {
-      state: !sponseeWorkflowContext?.formData.sponseeState,
-      zipcode: !sponseeWorkflowContext?.formData.sponseeZipcode,
-      gender: !sponseeWorkflowContext?.formData.sponseeGender,
+      name: !sponseeWorkflowContext?.formData.sponseeName,
     };
 
     sponseeWorkflowContext?.setFormErrors(errors);
@@ -71,6 +69,23 @@ export default function SponseePageTwo({
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
                     Please enter your name.
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group
+                  controlId="sponseePhone"
+                  className="card-form-group"
+                >
+                  <Form.Label className="card-label">Phone</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Your phone number"
+                    value={sponseeWorkflowContext?.formData.sponseePhone}
+                    onChange={sponseeWorkflowContext?.handleInputChange}
+                    isInvalid={sponseeWorkflowContext?.formErrors.phone}
+                  ></Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    Please enter your phone number.
                   </Form.Control.Feedback>
                 </Form.Group>
 

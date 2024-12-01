@@ -12,7 +12,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function LandingPage() {
   const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
   const { getUserByEmail } = UserService();
-  const [loggedInUser, setLoggedInUser] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const [showAccountTypeButtons, setShowAccountTypeButtons] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function LandingPage() {
         try {
           const userLoggedIn = await getUserByEmail(user.email);
           if (userLoggedIn) {
-            setLoggedInUser(true);
+            setLoggedInUser(userLoggedIn);
           }
         } catch (error: any) {
           if (error.message === "Error: Not Found") {
@@ -36,7 +36,7 @@ export default function LandingPage() {
 
   return (
     <div>
-      {isLoading && (
+      {isLoading && !loggedInUser && (
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
@@ -49,7 +49,7 @@ export default function LandingPage() {
         </div>
       )}
 
-      {loggedInUser && !isLoading && <UserSearch />}
+      {loggedInUser && !isLoading && <UserSearch user={loggedInUser} />}
       {showAccountTypeButtons && <AccountTypes />}
     </div>
   );

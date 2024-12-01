@@ -51,7 +51,9 @@ export default function UserService() {
   async function getUsersByTypeAndState(userType: number, state: string) {
     try {
       const response = await fetch(
-        `${prodUrl}/GetUsersByTypeAndState?sponsorState=${state}&userType=${userType}&`,
+        `${prodUrl}/GetUsersBySponsorStateAndUserType?sponsorState=${state}&userType=${String(
+          userType
+        )}&`,
         {
           method: "GET",
           headers: {
@@ -74,5 +76,6 @@ export default function UserService() {
   return {
     createUser,
     getUserByEmail,
+    getUsersByTypeAndState,
   };
 }

@@ -3,9 +3,10 @@
   color: white;
   height: 50px;
   overflow: hidden;
-  position: absolute;
+  position: fixed; /* Change from absolute to fixed */
   width: 100%;
   top: 0;
+  z-index: 1000; /* Ensure the header stays above other content */
 }
 
 .header-text {

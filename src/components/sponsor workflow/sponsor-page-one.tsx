@@ -109,10 +109,11 @@ export default function SponsorPageOne({
                       placement="right"
                       overlay={
                         <Tooltip id="tooltip-gender">
-                          General rule in 12 step programs is that a male may
-                          not sponsor a female and vice versa, reason being that
-                          romantic relationships can distract one from their
-                          primary purpose and compromise ones recovery.
+                          In 12-step programs, a general rule is that men should
+                          not sponsor women, and women should not sponsor men.
+                          This guideline exists because romantic relationships
+                          can distract from the primary purpose of recovery and
+                          potentially compromise progress.
                         </Tooltip>
                       }
                     >

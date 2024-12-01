@@ -65,7 +65,7 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
           nextClicked={handleNextClick}
         />
       )}
-      {step === 6 && <UserSearch />}
+      {/* {step === 6 && <UserSearch />} */}
     </>
   );
 }
