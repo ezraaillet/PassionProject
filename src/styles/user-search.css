@@ -19,6 +19,7 @@
 
 /* Card container */
 .card-container {
+  border: 3px solid red;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center cards horizontally */
@@ -28,7 +29,7 @@
 /* Card styling */
 .card {
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(212, 81, 61);
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;

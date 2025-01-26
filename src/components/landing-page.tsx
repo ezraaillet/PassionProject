@@ -55,7 +55,7 @@ export default function LandingPage() {
       )}
 
       {loggedInUser && !isLoading && loggedInUser.userType === 2 && (
-        <ProfilePage />
+        <ProfilePage user={loggedInUser} />
       )}
 
       {showAccountTypeButtons && <AccountTypes />}
