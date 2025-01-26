@@ -2,20 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow-x: hidden; */
-}
-
-/* Basic body styling */
-body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  line-height: 1.6; /* Improve readability */
-  background: rgb(
-    233,
-    229,
-    212
-  ); /* Light background color for the entire page */
-  margin: 0; /* Remove default margin */
+  line-height: 1.6;
+}
+
+body {
+  background: rgb(233, 229, 212);
+  margin: 0;
 }
