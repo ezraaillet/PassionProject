@@ -73,9 +73,33 @@ export default function UserService() {
     }
   }
 
+  async function deleteUserByEmail(email: string): Promise<void> {
+    try {
+      const response = await fetch(
+        `${prodUrl}/DeleteUserByEmail?email=${email}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      console.log(`User with email ${email} successfully deleted.`);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
+    }
+  }
+
   return {
     createUser,
     getUserByEmail,
     getUsersByTypeAndState,
+    deleteUserByEmail,
   };
 }

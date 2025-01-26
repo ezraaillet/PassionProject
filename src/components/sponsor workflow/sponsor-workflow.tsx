@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+import ProfilePage from "../profile-page";
 import SponsorPageFive from "./sponsor-page-five";
 import SponsorPageFour from "./sponsor-page-four";
 import SponsorPageOne from "./sponsor-page-one";
@@ -6,7 +9,6 @@ import SponsorPageTwo from "./sponsor-page-two";
 import UserSearch from "../user-search";
 import UserService from "../../services/user-service";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
-import { useEffect, useState } from "react";
 
 interface SponserWorkflowProps {
   backClicked: () => void; // Type the function prop
@@ -18,7 +20,7 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
   //* rendering it once instead of multiple renders in each workflow step component
   const [workflowStep, setWorkflowStep] = useState(1);
 
-//!  UseEffect for testing
+  //!  UseEffect for testing
   useEffect(() => {
     console.log("Workflow step: ", workflowStep);
   }, [workflowStep]);
@@ -49,7 +51,7 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
     <>
       {step === 1 && (
         <SponsorPageOne
-        //!pass in the step number state here
+          //!pass in the step number state here
           workflowStep={workflowStep}
           setWorkflowStep={setWorkflowStep}
           backClicked={handleBackClick}
@@ -80,7 +82,7 @@ export default function SponsorWorkflow({ backClicked }: SponserWorkflowProps) {
           nextClicked={handleNextClick}
         />
       )}
-      {/* {step === 6 && <UserSearch />} */}
+      {/* {step === 6 && <ProfilePage />} */}
     </>
   );
 }

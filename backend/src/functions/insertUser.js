@@ -23,8 +23,7 @@ app.http("InsertUser", {
       }
 
       // Generate a unique ID for the user
-      user.id =
-        new Date().toISOString() + Math.random().toString().substring(2, 10);
+      user.id = user.email;
 
       // Output the complete user object to Cosmos DB
       context.extraOutputs.set(sendToCosmosDb, user);

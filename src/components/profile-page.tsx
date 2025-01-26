@@ -1,120 +1,133 @@
-import "../styles/profile.css"; // Make sure to create this CSS file
+import "../styles/profile.css";
+
 import React, { useEffect, useState } from "react";
+
 import DisableAccount from "./disable-account";
+import LandingPage from "./landing-page";
+import UserService from "../services/user-service";
+
+interface UserProfile {
+  state: string;
+  zipcode: string;
+  gender: string;
+  name: string;
+  phone: string;
+  motto: string;
+  age: string;
+  job: string;
+  numberOfSponsees: string;
+  bio: string;
+  availability: string;
+  faith: string;
+  timeForSteps: string;
+  intensityLevel: string;
+  email: string;
+}
 
 export default function ProfilePage({ user }: any) {
-  const [open, setOpen] = useState(false);
-	const [userProfileData, setUserProfileData] = useState({});
-	const [userProfile, setUserProfile] = useState({
-		state: "",
-		zipcode: "",
-		gender: "",
-		name: "",
-		phone: "",
-		motto: "",
-		age: "",
-		job: "",
-		numberOfSponsees: "",
-		bio: "",
-		availability: "",
-		faith: "",
-		timeForSteps: "",
-		intensityLevel: "",
-		email: "",
-	});
+  const { deleteUserByEmail } = UserService();
+  const [open, setOpen] = useState(false); // For showing the confirmation popup
+  const [accountBeingDeleted, setAccountBeingDeleted] = useState(false); // For showing the spinner
+  const [accountDeleted, setAccountDeleted] = useState(false); // For redirecting to the landing page
+  const [userProfile, setUserProfile] = useState({
+    state: user.sponsorState || "Not specified",
+    zipcode: user.sponsorZipcode || "Not specified",
+    gender: user.sponsorGender || "Not specified",
+    name: user.sponsorName || "Unknown",
+    phone: user.sponsorPhone || "Not available",
+    motto: user.sponsorMotto || "No motto provided",
+    age: user.sponsorAge || "Not specified",
+    job: user.sponsorJob || "Not specified",
+    numberOfSponsees: user.sponsorNumberOfSponsees || "0",
+    bio: user.sponsorBio || "No bio available",
+    availability: user.sponsorAvailability || "Not specified",
+    faith: user.sponsorFaith || "Not specified",
+    timeForSteps: user.sponsorTimeForSteps || "Not specified",
+    intensityLevel: user.sponsorIntensityLevel || "Not specified",
+    email: user.email || "No email provided",
+  });
 
-	useEffect(() => {
-		const cleanupUserDataForDisplay = (user: any) => {
-			console.log(user);
-			// Remove the last 7 key-value pairs
-			const filteredObject = Object.fromEntries(
-				Object.entries(user).slice(0, -7),
-			);
+  // Handles the delete process
+  async function startDeleteAccount() {
+    setOpen(false); // Close the confirmation popup
+    setAccountBeingDeleted(true); // Show the spinner
 
-			// Rename keys to remove "sponsor"
-			const transformedObject = Object.fromEntries(
-				Object.entries(filteredObject).map(([key, value]) => [
-					key.startsWith("sponsor") ? key.replace("sponsor", "") : key,
-					value,
-				]),
-			);
-			setUserProfileData(transformedObject);
-			setUserProfile({
-				state: user.sponsorState || "Not specified",
-				zipcode: user.zipcode || "Not specified",
-				gender: user.sponsorGender || "Not specified",
-				name: user.sponsorName || "Unknown",
-				phone: user.sponsorPhone || "Not available",
-				motto: user.sponsorMotto || "No motto provided",
-				age: user.sponsorAge || "Not specified",
-				job: user.sponsorJob || "Not specified",
-				numberOfSponsees: user.sponsorNumberOfSponsees || "0",
-				bio: user.sponsorBio || "No bio available",
-				availability: user.sponsorAvailability || "Not specified",
-				faith: user.sponsorFaith || "Not specified",
-				timeForSteps: user.sponsorTimeForSteps || "Not specified",
-				intensityLevel: user.sponsorIntensityLevel || "Not specified",
-				email: user.email || "No email provided",
-			});
-		};
-
-		cleanupUserDataForDisplay(user);
-	}, []);
+    try {
+      await deleteUserByEmail(userProfile.email); // Call the service method
+      setAccountBeingDeleted(false); // Stop showing the spinner
+      setAccountDeleted(true); // Trigger redirection to the landing page
+    } catch (error) {
+      setAccountBeingDeleted(false); // Stop the spinner even on failure
+      console.error("Failed to delete the account:", error);
+      alert("An error occurred while deleting the account. Please try again.");
+    }
+  }
 
   return (
     <>
-    {open && (
-      <DisableAccount 
-        open={open}
-        setOpen={setOpen}
-      />
-    )}
+      {/* Redirect to landing page after account deletion */}
+      {accountDeleted && <LandingPage />}
 
-
-    <div className="ProfilePageContainer">
-      <div className="ProfilePageHeader">
-
-        {/* //! Uncomment after adding profile images to the DB -- the styling already exists */}
-        {/* <img
-          className="ProfileImage"
-          src="https://via.placeholder.com/150" 
-          alt="Profile"
-        /> */}
-        <h1>{userProfile.name}</h1>
-        <p className="ProfileEmail">
-          {userProfile.email}{" "}
-          {/* //! uncomment when adding edit functionality */}
-          {/* <span className="edit-icon material-symbols-outlined">edit</span> */}
-        </p>
-      </div>
-      <div className="ProfilePageData">
-        {[
-          { label: "State", value: userProfile.state },
-          { label: "Zip Code", value: userProfile.zipcode },
-          { label: "Gender", value: userProfile.gender },
-          { label: "Phone", value: userProfile.phone },
-          { label: "Motto", value: userProfile.motto },
-          { label: "Age", value: userProfile.age },
-          { label: "Job", value: userProfile.job },
-          { label: "Number of Sponsees", value: userProfile.numberOfSponsees },
-          { label: "Bio", value: userProfile.bio },
-          { label: "Availability", value: userProfile.availability },
-          { label: "Faith", value: userProfile.faith },
-          { label: "Time for Steps", value: userProfile.timeForSteps },
-          { label: "Intensity Level", value: userProfile.intensityLevel },
-        ].map((field, index) => (
-          <div className="ProfilePageDataItem" key={index}>
-            <p className="ProfilePageDataTitle">{field.label}:</p>
-            <p>{field.value}</p>
-            {/* //!uncomment when adding edit functionality */}
-            {/* <span className="edit-icon material-symbols-outlined">edit</span> */}
-          </div>
-        ))}
-        <div className="deleteButtonContainer">
-          <button onClick={() => setOpen(true)} className="DeleteAccountButton" type="button">Disable Account</button>
+      {/* Show the loading spinner during deletion */}
+      {accountBeingDeleted && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
         </div>
-      </div>
-    </div>
+      )}
+
+      {/* Show the confirmation popup */}
+      {open && (
+        <DisableAccount
+          open={open}
+          setOpen={setOpen}
+          deleteAccount={() => startDeleteAccount()}
+          email={userProfile.email}
+        />
+      )}
+
+      {/* Main profile page */}
+      {!accountDeleted && !accountBeingDeleted && (
+        <div className="ProfilePageContainer">
+          <div className="ProfilePageHeader">
+            <h1>{userProfile.name}</h1>
+            <p className="ProfileEmail">{userProfile.email}</p>
+          </div>
+          <div className="ProfilePageData">
+            {[
+              { label: "State", value: userProfile.state },
+              { label: "Zip Code", value: userProfile.zipcode },
+              { label: "Gender", value: userProfile.gender },
+              { label: "Phone", value: userProfile.phone },
+              { label: "Motto", value: userProfile.motto },
+              { label: "Age", value: userProfile.age },
+              { label: "Job", value: userProfile.job },
+              {
+                label: "Number of Sponsees",
+                value: userProfile.numberOfSponsees,
+              },
+              { label: "Bio", value: userProfile.bio },
+              { label: "Availability", value: userProfile.availability },
+              { label: "Faith", value: userProfile.faith },
+              { label: "Time for Steps", value: userProfile.timeForSteps },
+              { label: "Intensity Level", value: userProfile.intensityLevel },
+            ].map((field, index) => (
+              <div className="ProfilePageDataItem" key={index}>
+                <p className="ProfilePageDataTitle">{field.label}:</p>
+                <p>{field.value}</p>
+              </div>
+            ))}
+            <div className="deleteButtonContainer">
+              <button
+                onClick={() => setOpen(true)}
+                className="DeleteAccountButton"
+                type="button"
+              >
+                Disable Account
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
