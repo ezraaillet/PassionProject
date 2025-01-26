@@ -15,11 +15,17 @@ import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context
 import { useState } from "react";
 
 interface SponserWorkflowProps {
+  //! pass in the step # state here
+  workflowStep: number;
+  setWorkflowStep: React.Dispatch<React.SetStateAction<number>>;
   backClicked: () => void;
   nextClicked: () => void;
 }
 
 export default function SponsorPageOne({
+  //! pass in the step number state here
+  workflowStep,
+  setWorkflowStep,
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -38,11 +44,18 @@ export default function SponsorPageOne({
 
     const isValid = !Object.values(errors).includes(true);
 
+
+    //!after errors checked, if valid then update the state of the workflow number passed in
+
+
+
     if (isValid) {
       console.log(
         "Form submitted successfully",
         sponsorWorkflowContext?.formData
       );
+      //! Update the state of the workflow number passed in
+      setWorkflowStep(workflowStep + 1);
       nextClicked();
     } else {
       console.log("Please fill out all fields");

@@ -1,58 +1,60 @@
-.header {
+.NavbarContainer {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(212, 81, 61);
+  padding: 10px 0;
+  text-wrap: nowrap;
+}
+
+.NavbarTitle {
   color: white;
-  height: 50px;
-  overflow: hidden;
-  position: fixed; /* Change from absolute to fixed */
-  width: 100%;
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.ButtonSection {
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.ButtonSection h1 {
+  color: white;
+  font-size: 1.5rem;
+  align-self: center;
+  margin: 0 10px
+}
+
+.NavButton {
+  font-size: 1.1rem;
+  height: 40px;
+  width: 80px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 25px;
+  color: rgb(212, 81, 61);
+}
+
+/* .NavButton::before {
+  content: "";
+  position: absolute;
+  display: block;
   top: 0;
-  z-index: 1000; /* Ensure the header stays above other content */
-}
+  left: 0;
+  height: 50px;
+  width: 1px;
+  color: blue;
+  z-index: 12;
+} */
 
-.header-text {
-  margin-left: 20px;
-  margin-bottom: 0px;
-  font-size: 30px;
 
-  /* font-weight: <weight>; */
-  /* font-style: normal; */
-}
-
-.logout {
-  /* width: 60px; */
-  /* height: 30px; */
-  /* background-color: white; */
-  /* border: 1px solid black; */
-  /* border-radius: 5px; */
-  /* margin-top: 10px; */
-}
-
-.username {
-  /* margin-left: 30px;
-  margin-top: 10px; */
-}
-
-.button-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  border-left: 1px solid white;
-  background-color: rgb(212, 81, 61);
-  height: 100%; /* Ensures full height of the parent */
-  min-height: 50px; /* Ensures it matches the height of the .header */
-}
-
-.username-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.button-section:hover {
-  background-color: rgb(224, 120, 104);
-  cursor: pointer;
+@media screen and (max-width: 490px) {
+  .ButtonSection h1 {
+    display: none;
+  }
 }
