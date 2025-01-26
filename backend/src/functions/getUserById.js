@@ -18,7 +18,7 @@ app.http("GetUserByEmail", {
 
       // Construct a query for the specific email
       const querySpec = {
-        qauery: "",
+        query: "SELECT * FROM c WHERE c.email = @email",
         parameters: [{ name: "@email", value: userEmail }],
       };
 
