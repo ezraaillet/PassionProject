@@ -158,7 +158,7 @@ export default function UserSearch({ user }: UserSearchProps) {
   }, []); // Add dependencies to avoid unnecessary re-renders.
 
   return (
-    <div className="page-container">
+    <div className="search-container">
       <h1 className="user-search-title">User Search</h1>
       <div className="card-container">
         {sponsors.map((sponsor) => (

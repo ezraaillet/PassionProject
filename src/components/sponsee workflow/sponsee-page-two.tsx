@@ -15,6 +15,7 @@ import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context
 import { useState } from "react";
 
 interface SponseeWorkflowProps {
+
   backClicked: () => void;
   nextClicked: () => void;
 }
@@ -30,6 +31,7 @@ export default function SponseePageTwo({
 
     const errors = {
       name: !sponseeWorkflowContext?.formData.sponseeName,
+      phone: !sponseeWorkflowContext?.formData.sponseePhone
     };
 
     sponseeWorkflowContext?.setFormErrors(errors);
@@ -48,64 +50,59 @@ export default function SponseePageTwo({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a sponsee<span className="step">2/2</span>
-              </Card.Title>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsee</h2>
+        </div>
 
-              <Form>
-                <Form.Group controlId="sponseeName" className="card-form-group">
-                  <Form.Label className="card-label">Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Name, Alias, or Initials"
-                    value={sponseeWorkflowContext?.formData.sponseeName}
-                    onChange={sponseeWorkflowContext?.handleInputChange}
-                    isInvalid={sponseeWorkflowContext?.formErrors.name}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your name.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponseeState">Name</label>
+            <input
+              type="text"
+              id="sponseeName"
+              placeholder="Enter your name"
+              value={sponseeWorkflowContext?.formData.sponseeName}
+              onChange={sponseeWorkflowContext?.handleInputChange}
+              className={sponseeWorkflowContext?.formErrors.name ? 'error' : ''}
+            />
+            {sponseeWorkflowContext?.formErrors.name && (
+              <span className="error-message">Please Enter your name.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponseePhone"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Phone</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Your phone number"
-                    value={sponseeWorkflowContext?.formData.sponseePhone}
-                    onChange={sponseeWorkflowContext?.handleInputChange}
-                    isInvalid={sponseeWorkflowContext?.formErrors.phone}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your phone number.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponseePhone">Phone</label>
+            <input
+              type="number"
+              id="sponseePhone"
+              placeholder="Enter your phone number"
+              value={sponseeWorkflowContext?.formData.sponseePhone}
+              onChange={sponseeWorkflowContext?.handleInputChange}
+              className={
+                sponseeWorkflowContext?.formErrors.phone ? "error" : ""
+              }
+            />
+            {sponseeWorkflowContext?.formErrors.phone && (
+              <span className="error-message">Please enter your phone number.</span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button onClick={handleNext} className="small-button">
-                      Next
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

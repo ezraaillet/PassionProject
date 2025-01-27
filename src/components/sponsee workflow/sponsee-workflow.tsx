@@ -1,15 +1,19 @@
+import "../../styles/sponsor-page.css"
+
 import SponseePageOne from "./sponsee-page-one";
 import SponseePageTwo from "./sponsee-page-two";
 import UserSearch from "../user-search";
 import UserService from "../../services/user-service";
 import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context";
 import { useState } from "react";
+import ProgressBar from "../progress-bar";
 
 interface SponseeWorkflowProps {
   backClicked: () => void; // Type the function prop
 }
 
 export default function SponseeWorkflow({ backClicked }: SponseeWorkflowProps) {
+  const [workflowStep, setWorkflowStep] = useState(1)
   const [step, setStep] = useState(1);
   const [loggedInUser, setLoggedInUser] = useState<{
     userType: number;
@@ -51,17 +55,24 @@ export default function SponseeWorkflow({ backClicked }: SponseeWorkflowProps) {
 
   return (
     <>
-      {step === 1 && (
-        <SponseePageOne
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
-      )}
-      {step === 2 && (
-        <SponseePageTwo
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
+      {step < 3 && (
+
+        <div className="sponsor-page-container">
+          {step < 3 && <ProgressBar currentStep={step} totalSteps={2} />}
+
+          {step === 1 && (
+            <SponseePageOne
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+          {step === 2 && (
+            <SponseePageTwo
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+        </div>
       )}
       {step === 3 && loggedInUser && <UserSearch user={loggedInUser} />}
     </>
