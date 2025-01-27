@@ -1,0 +1,233 @@
+.sponsor-page-container {
+	height: calc(100vh - 70px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.sponsor-container {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 8px;
+}
+
+.card {
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	margin: 10px auto;
+	width: 100%;
+	max-width: 600px;
+	box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	flex-wrap: wrap;
+}
+
+.card-header h2 {
+	margin: 0;
+	font-size: 20px;
+	color: #333;
+}
+
+.step-indicator {
+	background: #f5f5f5;
+	padding: 4px 12px;
+	border-radius: 16px;
+	font-size: 14px;
+	color: #666;
+}
+
+.sponsor-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
+}
+
+label {
+	font-weight: 500;
+	color: #333;
+	font-size: 14px;
+}
+
+.gender-label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+input,
+select {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 16px;
+	box-sizing: border-box;
+	-webkit-appearance: none; /* For iOS */
+	appearance: none;
+	background-color: white;
+}
+
+/* Custom select arrow */
+select {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+	background-size: 16px;
+	padding-right: 40px;
+}
+
+input:focus,
+select:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+input.error,
+select.error {
+	border-color: #dc3545;
+}
+
+.error-message {
+	color: #dc3545;
+	font-size: 12px;
+}
+
+.tooltip-container {
+	position: relative;
+	display: inline-block;
+}
+
+.info-icon {
+	color: #666;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.tooltip-container:hover .tooltip-text {
+	display: block;
+}
+
+.tooltip-text {
+	display: none;
+	position: absolute;
+	background: #333;
+	color: white;
+	padding: 8px;
+	border-radius: 4px;
+	width: 200px;
+	font-size: 12px;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: 8px;
+	z-index: 1000;
+}
+
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+button {
+	flex: 1;
+	padding: 12px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	min-height: 44px; /* Better touch targets */
+}
+
+.btn-primary {
+	background-color: rgb(212, 81, 61);
+	color: white;
+	border-radius: 25px;
+}
+
+.btn-secondary {
+	background-color: rgb(212, 81, 61);
+	color: white;
+	border-radius: 25px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+	.sponsor-container {
+		padding: 10px;
+	}
+
+	.card {
+		padding: 16px;
+		margin: 0;
+		border-radius: 8px;
+		box-shadow: none;
+	}
+
+	.tooltip-text {
+		width: 180px;
+		left: auto;
+		right: 0;
+		transform: none;
+	}
+
+	input,
+	select,
+	button {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 480px) {
+	.card-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.step-indicator {
+		align-self: flex-end;
+	}
+
+	.tooltip-text {
+		width: 160px;
+	}
+
+	.button-container {
+		flex-direction: column;
+	}
+
+	button {
+		width: 100%;
+	}
+}
+
+/* iOS Safari specific styles */
+@supports (-webkit-touch-callout: none) {
+	input,
+	select {
+		font-size: 16px;
+	}
+}

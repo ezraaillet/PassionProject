@@ -3,11 +3,15 @@ import { Card, Col, Form, Row } from "react-bootstrap";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
+  workflowStep: number;
+  setWorkflowStep: React.Dispatch<React.SetStateAction<number>>;
   backClicked: () => void;
   nextClicked: () => void;
 }
 
 export default function SponsorPageFour({
+  workflowStep,
+  setWorkflowStep,
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -31,6 +35,7 @@ export default function SponsorPageFour({
         "Form submitted successfully",
         sponsorWorkflowContext?.formData
       );
+      setWorkflowStep(workflowStep + 1);
       nextClicked();
     } else {
       console.log("Please fill out all fields");

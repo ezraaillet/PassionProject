@@ -11,11 +11,15 @@ import {
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
+  workflowStep: number;
+  setWorkflowStep: React.Dispatch<React.SetStateAction<number>>;
   backClicked: () => void;
   nextClicked: () => void;
 }
 
 export default function SponsorPageTwo({
+  workflowStep,
+  setWorkflowStep,
   backClicked,
   nextClicked,
 }: SponserWorkflowProps) {
@@ -39,6 +43,7 @@ export default function SponsorPageTwo({
         "Form submitted successfully",
         sponsorWorkflowContext?.formData
       );
+      setWorkflowStep(workflowStep + 1);
       nextClicked();
     } else {
       console.log("Please fill out all fields");
