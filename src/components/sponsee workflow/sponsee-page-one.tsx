@@ -1,18 +1,7 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
-
 import { FaInfoCircle } from "react-icons/fa";
 import { genders } from "../../common/genders";
 import { states } from "../../common/states";
 import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context";
-import { useState } from "react";
 
 interface SponseeWorkflowProps {
   backClicked: () => void;
@@ -50,111 +39,98 @@ export default function SponseePageOne({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a sponsee<span className="step">1/2</span>
-              </Card.Title>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsee</h2>
+        </div>
 
-              <Form>
-                <Form.Group
-                  controlId="sponseeState"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">State</Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={sponseeWorkflowContext?.formData.sponseeState}
-                    onChange={sponseeWorkflowContext?.handleInputChange}
-                    isInvalid={sponseeWorkflowContext?.formErrors.state}
-                  >
-                    {states.map((state) => (
-                      <option key={state.value} value={state.value}>
-                        {state.label}
-                      </option>
-                    ))}
-                  </Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please select your state.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponseeState">State</label>
+            <select
+              id="sponseeState"
+              value={sponseeWorkflowContext?.formData.sponseeState}
+              onChange={sponseeWorkflowContext?.handleInputChange}
+              className={
+                sponseeWorkflowContext?.formErrors.state ? "error" : ""
+              }
+            >
+              <option value="">Select your state</option>
+              {states.map((state) => (
+                <option key={state.value} value={state.value}>
+                  {state.label}
+                </option>
+              ))}
+            </select>
+            {sponseeWorkflowContext?.formErrors.state && (
+              <span className="error-message">Please select your state.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponseeZipcode"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Zipcode</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your zipcode"
-                    value={sponseeWorkflowContext?.formData.sponseeZipcode}
-                    onChange={sponseeWorkflowContext?.handleInputChange}
-                    isInvalid={sponseeWorkflowContext?.formErrors.zipcode}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your zipcode.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponseeZipcode">Zipcode</label>
+            <input
+              type="text"
+              id="sponseeZipcode"
+              placeholder="Enter your zipcode"
+              value={sponseeWorkflowContext?.formData.sponseeZipcode}
+              onChange={sponseeWorkflowContext?.handleInputChange}
+              className={
+                sponseeWorkflowContext?.formErrors.zipcode ? "error" : ""
+              }
+            />
+            {sponseeWorkflowContext?.formErrors.zipcode && (
+              <span className="error-message">Please enter your zipcode.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponseeGender"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">
-                    Gender
-                    <OverlayTrigger
-                      placement="right"
-                      overlay={
-                        <Tooltip id="tooltip-gender">
-                          General rule in 12 step programs is that a male may
-                          not sponsee a female and vice versa, reason being that
-                          romantic relationships can distract one from their
-                          primary purpose and compromise ones recovery.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ml-2">
-                        <FaInfoCircle className="info-icon" />
-                      </span>
-                    </OverlayTrigger>
-                  </Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={sponseeWorkflowContext?.formData.sponseeGender}
-                    onChange={sponseeWorkflowContext?.handleInputChange}
-                    isInvalid={sponseeWorkflowContext?.formErrors.gender}
-                  >
-                    {genders.map((gender) => (
-                      <option key={gender.value} value={gender.value}>
-                        {gender.label}
-                      </option>
-                    ))}
-                  </Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please select your gender.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponseeGender" className="gender-label">
+              Gender
+              <div className="tooltip-container">
+                <FaInfoCircle className="info-icon" />
+                <span className="tooltip-text">
+                  General rule in 12-step programs: males may not sponsor
+                  females and vice versa to avoid distractions and maintain
+                  focus on recovery.
+                </span>
+              </div>
+            </label>
+            <select
+              id="sponseeGender"
+              value={sponseeWorkflowContext?.formData.sponseeGender}
+              onChange={sponseeWorkflowContext?.handleInputChange}
+              className={
+                sponseeWorkflowContext?.formErrors.gender ? "error" : ""
+              }
+            >
+              <option value="">Select your gender</option>
+              {genders.map((gender) => (
+                <option key={gender.value} value={gender.value}>
+                  {gender.label}
+                </option>
+              ))}
+            </select>
+            {sponseeWorkflowContext?.formErrors.gender && (
+              <span className="error-message">Please select your gender.</span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button onClick={handleNext} className="small-button">
-                      Next
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

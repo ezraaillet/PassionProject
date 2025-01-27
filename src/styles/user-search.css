@@ -1,11 +1,10 @@
 /* Page container to center everything */
-.page-container {
+.search-container {
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
-  min-height: 100vh; /* Ensure full viewport height */
-  margin-top: 50px; /* Account for header height */
+  height: calc(100vh - 70px); /* Ensure full viewport height */
   padding: 20px;
   box-sizing: border-box;
 }
