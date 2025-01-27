@@ -43,7 +43,7 @@
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
   gap: 1%;
 }
 
