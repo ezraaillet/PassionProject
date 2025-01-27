@@ -3,10 +3,10 @@ import "../styles/buttons.css";
 import { Col, Row } from "react-bootstrap";
 
 import SponseeWorkflow from "./sponsee workflow/sponsee-workflow";
-import SponsorWorkflow from "./sponsor workflow/sponsor-workflow";
-import { useState } from "react";
-import { SponsorWorkflowProvider } from "../common/sponsor-workflow-context";
 import { SponseeWorkflowProvider } from "../common/sponsee-workflow-context";
+import SponsorWorkflow from "./sponsor workflow/sponsor-workflow";
+import { SponsorWorkflowProvider } from "../common/sponsor-workflow-context";
+import { useState } from "react";
 
 export default function AccountTypes() {
   const [workflowType, setWorkflowType] = useState<number | null>(null);

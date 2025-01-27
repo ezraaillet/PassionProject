@@ -21,8 +21,8 @@ export default function SponsorPageThree({
     const errors = {
       age: !sponsorWorkflowContext?.formData.sponsorAge,
       job: !sponsorWorkflowContext?.formData.sponsorJob,
-      numberOfSponsees: !sponsorWorkflowContext?.formData
-        .sponsorNumberOfSponsees,
+      numberOfSponsees:
+        !sponsorWorkflowContext?.formData.sponsorNumberOfSponsees,
     };
 
     sponsorWorkflowContext?.setFormErrors(errors);
@@ -57,9 +57,7 @@ export default function SponsorPageThree({
               placeholder="Your Age"
               value={sponsorWorkflowContext?.formData.sponsorAge}
               onChange={sponsorWorkflowContext?.handleInputChange}
-              className={
-                sponsorWorkflowContext?.formErrors.age ? "error" : ""
-              }
+              className={sponsorWorkflowContext?.formErrors.age ? "error" : ""}
             />
             {sponsorWorkflowContext?.formErrors.age && (
               <span className="error-message">Please enter a valid age.</span>
@@ -74,9 +72,7 @@ export default function SponsorPageThree({
               placeholder="Enter your job"
               value={sponsorWorkflowContext?.formData.sponsorJob}
               onChange={sponsorWorkflowContext?.handleInputChange}
-              className={
-                sponsorWorkflowContext?.formErrors.job ? "error" : ""
-              }
+              className={sponsorWorkflowContext?.formErrors.job ? "error" : ""}
             />
             {sponsorWorkflowContext?.formErrors.job && (
               <span className="error-message">Please enter your job.</span>
@@ -91,9 +87,7 @@ export default function SponsorPageThree({
               type="text"
               id="sponsorNumberOfSponsees"
               placeholder="Max number of sponsees"
-              value={
-                sponsorWorkflowContext?.formData.sponsorNumberOfSponsees
-              }
+              value={sponsorWorkflowContext?.formData.sponsorNumberOfSponsees}
               onChange={sponsorWorkflowContext?.handleInputChange}
               className={
                 sponsorWorkflowContext?.formErrors.numberOfSponsees
