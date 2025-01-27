@@ -41,49 +41,53 @@ export default function SponsorWorkflow({ backClicked }: SponsorWorkflowProps) {
   };
 
   return (
-    <div className="sponsor-page-container">
-      {step < 6 && <ProgressBar currentStep={step} totalSteps={5} />}
-      {step === 1 && (
-        <SponsorPageOne
-          workflowStep={workflowStep}
-          setWorkflowStep={setWorkflowStep}
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
-      )}
-      {step === 2 && (
-        <SponsorPageTwo
-          workflowStep={workflowStep}
-          setWorkflowStep={setWorkflowStep}
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
-      )}
-      {step === 3 && (
-        <SponsorPageThree
-          workflowStep={workflowStep}
-          setWorkflowStep={setWorkflowStep}
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
-      )}
-      {step === 4 && (
-        <SponsorPageFour
-          workflowStep={workflowStep}
-          setWorkflowStep={setWorkflowStep}
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
-      )}
-      {step === 5 && (
-        <SponsorPageFive
-          workflowStep={workflowStep}
-          setWorkflowStep={setWorkflowStep}
-          backClicked={handleBackClick}
-          nextClicked={handleNextClick}
-        />
+    <>
+      {step < 6 && (
+        <div className="sponsor-page-container">
+          {step < 6 && <ProgressBar currentStep={step} totalSteps={5} />}
+          {step === 1 && (
+            <SponsorPageOne
+              workflowStep={workflowStep}
+              setWorkflowStep={setWorkflowStep}
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+          {step === 2 && (
+            <SponsorPageTwo
+              workflowStep={workflowStep}
+              setWorkflowStep={setWorkflowStep}
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+          {step === 3 && (
+            <SponsorPageThree
+              workflowStep={workflowStep}
+              setWorkflowStep={setWorkflowStep}
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+          {step === 4 && (
+            <SponsorPageFour
+              workflowStep={workflowStep}
+              setWorkflowStep={setWorkflowStep}
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+          {step === 5 && (
+            <SponsorPageFive
+              workflowStep={workflowStep}
+              setWorkflowStep={setWorkflowStep}
+              backClicked={handleBackClick}
+              nextClicked={handleNextClick}
+            />
+          )}
+        </div>
       )}
       {step === 6 && <ProfilePage user={sponsorWorkflowContext?.formData} />}
-    </div>
+    </>
   );
 }

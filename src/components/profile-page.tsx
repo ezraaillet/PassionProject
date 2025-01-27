@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import DisableAccount from "./disable-account";
 import LandingPage from "./landing-page";
 import UserService from "../services/user-service";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface UserProfile {
   state: string;
@@ -29,7 +30,8 @@ export default function ProfilePage({ user }: any) {
   const [open, setOpen] = useState(false); // For showing the confirmation popup
   const [accountBeingDeleted, setAccountBeingDeleted] = useState(false); // For showing the spinner
   const [accountDeleted, setAccountDeleted] = useState(false); // For redirecting to the landing page
-  const [userProfile, setUserProfile] = useState({
+  const { logout } = useAuth0();
+  const [userProfile, setUserProfile] = useState<UserProfile>({
     state: user.sponsorState || "Not specified",
     zipcode: user.sponsorZipcode || "Not specified",
     gender: user.sponsorGender || "Not specified",
@@ -53,7 +55,7 @@ export default function ProfilePage({ user }: any) {
     setAccountBeingDeleted(true); // Show the spinner
 
     try {
-      await deleteUserByEmail(userProfile.email); // Call the service method
+      await Promise.all([deleteUserByEmail(userProfile.email), logout()]);
       setAccountBeingDeleted(false); // Stop showing the spinner
       setAccountDeleted(true); // Trigger redirection to the landing page
     } catch (error) {
@@ -63,11 +65,12 @@ export default function ProfilePage({ user }: any) {
     }
   }
 
+  if (accountDeleted) {
+    return <LandingPage />;
+  }
+
   return (
     <>
-      {/* Redirect to landing page after account deletion */}
-      {accountDeleted && <LandingPage />}
-
       {/* Show the loading spinner during deletion */}
       {accountBeingDeleted && (
         <div className="spinner-container">
@@ -80,13 +83,13 @@ export default function ProfilePage({ user }: any) {
         <DisableAccount
           open={open}
           setOpen={setOpen}
-          deleteAccount={() => startDeleteAccount()}
+          deleteAccount={startDeleteAccount}
           email={userProfile.email}
         />
       )}
 
       {/* Main profile page */}
-      {!accountDeleted && !accountBeingDeleted && (
+      {!accountBeingDeleted && (
         <div className="ProfilePageContainer">
           <div className="ProfilePageHeader">
             <h1>{userProfile.name}</h1>
@@ -94,6 +97,7 @@ export default function ProfilePage({ user }: any) {
           </div>
           <div className="ProfilePageData">
             {[
+              /* Profile data rendering */
               { label: "State", value: userProfile.state },
               { label: "Zip Code", value: userProfile.zipcode },
               { label: "Gender", value: userProfile.gender },
