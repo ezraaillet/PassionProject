@@ -140,8 +140,8 @@ export default function UserSearch({ user }: UserSearchProps) {
       try {
         const sponsorsData = await getUsersByTypeAndState(2, user.sponseeState);
         console.log(sponsorsData);
-        // setSponsors(testDataSponsors);
-        setSponsors(sponsorsData || []);
+        setSponsors(testDataSponsors);
+        // setSponsors(sponsorsData || []);
       } catch (error: any) {
         if (error.message === "Error: Not Found") {
           console.warn("No sponsors found for this user.");
@@ -158,31 +158,41 @@ export default function UserSearch({ user }: UserSearchProps) {
   }, []); // Add dependencies to avoid unnecessary re-renders.
 
   return (
-    <div className="search-container">
-      <h1 className="user-search-title">User Search</h1>
-      <div className="card-container">
-        {sponsors.map((sponsor) => (
-          <div className="card" key={sponsor.id}>
-            <h2>{sponsor.sponsorName}</h2>
-            <p>
-              {sponsor.sponsorJob} | {sponsor.sponsorFaith}
-            </p>
-            <p>{sponsor.sponsorBio}</p>
-            <p>
-              Age: {sponsor.sponsorAge} | Gender: {sponsor.sponsorGender}
-            </p>
-            <p>Availability: {sponsor.sponsorAvailability}</p>
-            <p>Motto: {sponsor.sponsorMotto}</p>
-            <p>
-              <a href={`tel:${sponsor.sponsorPhone}`}>
-                Call: {sponsor.sponsorPhone}
-              </a>
-              <br />
-              <a href={`mailto:${sponsor.email}`}>Email</a>
-            </p>
+    <>
+      {sponsors.length === 0 && (
+        <div className="search-container">
+          <h1 className="user-search-title">User Search</h1>
+          <p>No sponsors found in your area.</p>
+        </div>
+      )}
+      {sponsors.length > 0 && (
+        <div className="search-container">
+          <h1 className="user-search-title">User Search</h1>
+          <div className="card-container">
+            {sponsors.map((sponsor) => (
+              <div className="card" key={sponsor.id}>
+                <h2>{sponsor.sponsorName}</h2>
+                <p>
+                  {sponsor.sponsorJob} | {sponsor.sponsorFaith}
+                </p>
+                <p>{sponsor.sponsorBio}</p>
+                <p>
+                  Age: {sponsor.sponsorAge} | Gender: {sponsor.sponsorGender}
+                </p>
+                <p>Availability: {sponsor.sponsorAvailability}</p>
+                <p>Motto: {sponsor.sponsorMotto}</p>
+                <p>
+                  <a href={`tel:${sponsor.sponsorPhone}`}>
+                    Call: {sponsor.sponsorPhone}
+                  </a>
+                  <br />
+                  <a href={`mailto:${sponsor.email}`}>Email</a>
+                </p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

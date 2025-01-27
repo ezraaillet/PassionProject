@@ -56,7 +56,6 @@ export default function SponseePageOne({
                 sponseeWorkflowContext?.formErrors.state ? "error" : ""
               }
             >
-              <option value="">Select your state</option>
               {states.map((state) => (
                 <option key={state.value} value={state.value}>
                   {state.label}
@@ -105,7 +104,6 @@ export default function SponseePageOne({
                 sponseeWorkflowContext?.formErrors.gender ? "error" : ""
               }
             >
-              <option value="">Select your gender</option>
               {genders.map((gender) => (
                 <option key={gender.value} value={gender.value}>
                   {gender.label}

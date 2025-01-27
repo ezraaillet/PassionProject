@@ -2,7 +2,6 @@ import { FaInfoCircle } from "react-icons/fa";
 import { genders } from "../../common/genders";
 import { states } from "../../common/states";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
-import { useState } from "react";
 
 interface SponserWorkflowProps {
   workflowStep: number;

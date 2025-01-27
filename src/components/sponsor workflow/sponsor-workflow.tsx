@@ -25,6 +25,39 @@ export default function SponsorWorkflow({ backClicked }: SponsorWorkflowProps) {
 
   const handleBackClick = () => {
     if (step === 1) {
+      // clear forms and errors
+      sponsorWorkflowContext?.setFormData({
+        sponsorState: "",
+        sponsorZipcode: "",
+        sponsorGender: "",
+        sponsorName: "",
+        sponsorPhone: "",
+        sponsorMotto: "",
+        sponsorAge: "",
+        sponsorJob: "",
+        sponsorNumberOfSponsees: "",
+        sponsorBio: "",
+        sponsorAvailability: "",
+        sponsorFaith: "",
+        sponsorTimeForSteps: "",
+        sponsorIntensityLevel: "",
+      });
+      sponsorWorkflowContext?.setFormErrors({
+        state: false,
+        zipcode: false,
+        gender: false,
+        name: false,
+        phone: false,
+        motto: false,
+        age: false,
+        job: false,
+        numberOfSponsees: false,
+        bio: false,
+        availability: false,
+        faith: false,
+        stepTime: false,
+        intensityLevel: false,
+      });
       backClicked();
     } else {
       setStep(step - 1);

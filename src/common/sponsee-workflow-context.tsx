@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState } from "react";
 
 interface SponseeWorkflowFormData {
   sponseeState: string;
@@ -18,6 +18,7 @@ interface SponseeWorkflowFormErrors {
 
 const SponseeWorkflowContext = createContext<{
   formData: SponseeWorkflowFormData;
+  setFormData: (data: any) => void;
   formErrors: SponseeWorkflowFormErrors;
   setFormErrors: (errors: any) => void;
   handleInputChange: (e: any) => void;
@@ -48,6 +49,7 @@ const SponseeWorkflowProvider = ({ children }: { children: any }) => {
 
   const props = {
     formData,
+    setFormData,
     formErrors,
     setFormErrors,
     handleInputChange,

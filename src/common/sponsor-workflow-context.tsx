@@ -36,6 +36,7 @@ interface SponsorWorkflowFormErrors {
 
 const SponsorWorkflowContext = createContext<{
   formData: SponsorWorkflowFormData;
+  setFormData: (data: any) => void;
   formErrors: SponsorWorkflowFormErrors;
   setFormErrors: (errors: any) => void;
   handleInputChange: (e: any) => void;
@@ -84,6 +85,7 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
 
   const props = {
     formData,
+    setFormData,
     formErrors,
     setFormErrors,
     handleInputChange,
