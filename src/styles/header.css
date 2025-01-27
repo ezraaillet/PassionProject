@@ -26,7 +26,7 @@
 
 .ButtonSection h1 {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   align-self: center;
   margin: 0 10px
 }
@@ -55,7 +55,6 @@
   left: 0; 
   height: 100%;
   width: 0; 
-  /*! Change this color with ezra */
   background-color: #f3e9dc;
   z-index: -1; 
   transition: width 0.3s ease; 
