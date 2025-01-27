@@ -1,5 +1,3 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
-
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
@@ -34,7 +32,6 @@ export default function SponsorPageFive({
         "Form submitted successfully",
         sponsorWorkflowContext?.formData
       );
-      setWorkflowStep(workflowStep + 1);
       nextClicked();
     } else {
       console.log("Please fill out all fields");
@@ -42,78 +39,63 @@ export default function SponsorPageFive({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a Sponsor<span className="step">5/5</span>
-              </Card.Title>
-              <Form>
-                <Form.Group
-                  controlId="sponsorTimeForSteps"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">
-                    Time to complete steps
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Time taken to get through steps"
-                    value={sponsorWorkflowContext?.formData.sponsorTimeForSteps}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.stepTime}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter a time range.
-                  </Form.Control.Feedback>
-                </Form.Group>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsor</h2>
+        </div>
 
-                <Form.Group
-                  controlId="sponsorIntensityLevel"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">
-                    Intensity Level
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Your intensity level"
-                    value={
-                      sponsorWorkflowContext?.formData.sponsorIntensityLevel
-                    }
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={
-                      sponsorWorkflowContext?.formErrors.intensityLevel
-                    }
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your intensity level.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponsorTimeForSteps">Time to complete steps</label>
+            <input
+              type="text"
+              id="sponsorTimeForSteps"
+              placeholder="Time taken to get through steps"
+              value={sponsorWorkflowContext?.formData.sponsorTimeForSteps}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.stepTime ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.stepTime && (
+              <span className="error-message">Please enter a time range.</span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button
-                      onClick={handleNext}
-                      className="small-button"
-                      type="submit"
-                    >
-                      Finish
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="form-group">
+            <label htmlFor="sponsorIntensityLevel">Intensity Level</label>
+            <input
+              type="text"
+              id="sponsorIntensityLevel"
+              placeholder="Your intensity level"
+              value={sponsorWorkflowContext?.formData.sponsorIntensityLevel}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.intensityLevel ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.intensityLevel && (
+              <span className="error-message">
+                Please enter your intensity level.
+              </span>
+            )}
+          </div>
+
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Finish
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

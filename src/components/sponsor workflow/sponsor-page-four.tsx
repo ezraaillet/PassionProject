@@ -1,5 +1,3 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
-
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
@@ -21,9 +19,9 @@ export default function SponsorPageFour({
     e.preventDefault();
 
     const errors = {
-      name: !sponsorWorkflowContext?.formData.sponsorBio,
-      phone: !sponsorWorkflowContext?.formData.sponsorAvailability,
-      motto: !sponsorWorkflowContext?.formData.sponsorFaith,
+      bio: !sponsorWorkflowContext?.formData.sponsorBio,
+      availability: !sponsorWorkflowContext?.formData.sponsorAvailability,
+      faith: !sponsorWorkflowContext?.formData.sponsorFaith,
     };
 
     sponsorWorkflowContext?.setFormErrors(errors);
@@ -43,84 +41,80 @@ export default function SponsorPageFour({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a Sponsor<span className="step">4/5</span>
-              </Card.Title>
-              <Form>
-                <Form.Group controlId="sponsorBio" className="card-form-group">
-                  <Form.Label className="card-label">Bio</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="A little about yourself"
-                    value={sponsorWorkflowContext?.formData.sponsorBio}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.bio}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter a valid bio.
-                  </Form.Control.Feedback>
-                </Form.Group>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsor</h2>
+        </div>
 
-                <Form.Group
-                  controlId="sponsorAvailability"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Availability</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Availability"
-                    value={sponsorWorkflowContext?.formData.sponsorAvailability}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.availability}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your availability.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponsorBio">Bio</label>
+            <input
+              type="text"
+              id="sponsorBio"
+              placeholder="A little about yourself"
+              value={sponsorWorkflowContext?.formData.sponsorBio}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.bio ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.bio && (
+              <span className="error-message">Please enter a valid bio.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponsorFaith"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Faith</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Your Faith or Religion"
-                    value={sponsorWorkflowContext?.formData.sponsorFaith}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.faith}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your faith.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponsorAvailability">Availability</label>
+            <input
+              type="text"
+              id="sponsorAvailability"
+              placeholder="Availability"
+              value={sponsorWorkflowContext?.formData.sponsorAvailability}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.availability ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.availability && (
+              <span className="error-message">
+                Please enter your availability.
+              </span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button
-                      onClick={handleNext}
-                      className="small-button"
-                      type="submit"
-                    >
-                      Next
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="form-group">
+            <label htmlFor="sponsorFaith">Faith</label>
+            <input
+              type="text"
+              id="sponsorFaith"
+              placeholder="Your Faith or Religion"
+              value={sponsorWorkflowContext?.formData.sponsorFaith}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.faith ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.faith && (
+              <span className="error-message">Please enter your faith.</span>
+            )}
+          </div>
+
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

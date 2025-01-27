@@ -1,5 +1,3 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
-
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
@@ -21,9 +19,10 @@ export default function SponsorPageThree({
     e.preventDefault();
 
     const errors = {
-      name: !sponsorWorkflowContext?.formData.sponsorAge,
-      phone: !sponsorWorkflowContext?.formData.sponsorJob,
-      motto: !sponsorWorkflowContext?.formData.sponsorNumberOfSponsees,
+      age: !sponsorWorkflowContext?.formData.sponsorAge,
+      job: !sponsorWorkflowContext?.formData.sponsorJob,
+      numberOfSponsees: !sponsorWorkflowContext?.formData
+        .sponsorNumberOfSponsees,
     };
 
     sponsorWorkflowContext?.setFormErrors(errors);
@@ -43,87 +42,86 @@ export default function SponsorPageThree({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a Sponsor<span className="step">3/5</span>
-              </Card.Title>
-              <Form>
-                <Form.Group controlId="sponsorAge" className="card-form-group">
-                  <Form.Label className="card-label">Age</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Your Age"
-                    value={sponsorWorkflowContext?.formData.sponsorAge}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.age}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter a valid age.
-                  </Form.Control.Feedback>
-                </Form.Group>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsor</h2>
+        </div>
 
-                <Form.Group controlId="sponsorJob" className="card-form-group">
-                  <Form.Label className="card-label">Job</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your job"
-                    value={sponsorWorkflowContext?.formData.sponsorJob}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.job}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your job.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponsorAge">Age</label>
+            <input
+              type="text"
+              id="sponsorAge"
+              placeholder="Your Age"
+              value={sponsorWorkflowContext?.formData.sponsorAge}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.age ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.age && (
+              <span className="error-message">Please enter a valid age.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponsorNumberOfSponsees"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">
-                    Max number of sponsees
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Max number of sponsees"
-                    value={
-                      sponsorWorkflowContext?.formData.sponsorNumberOfSponsees
-                    }
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={
-                      sponsorWorkflowContext?.formErrors.numberOfSponsees
-                    }
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter number of sponsees.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponsorJob">Job</label>
+            <input
+              type="text"
+              id="sponsorJob"
+              placeholder="Enter your job"
+              value={sponsorWorkflowContext?.formData.sponsorJob}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.job ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.job && (
+              <span className="error-message">Please enter your job.</span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button
-                      onClick={handleNext}
-                      className="small-button"
-                      type="submit"
-                    >
-                      Next
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="form-group">
+            <label htmlFor="sponsorNumberOfSponsees">
+              Max number of sponsees
+            </label>
+            <input
+              type="text"
+              id="sponsorNumberOfSponsees"
+              placeholder="Max number of sponsees"
+              value={
+                sponsorWorkflowContext?.formData.sponsorNumberOfSponsees
+              }
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.numberOfSponsees
+                  ? "error"
+                  : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.numberOfSponsees && (
+              <span className="error-message">
+                Please enter the number of sponsees.
+              </span>
+            )}
+          </div>
+
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

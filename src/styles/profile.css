@@ -136,15 +136,15 @@
 	background-color: black;
 	color: white;
 	border: none;
-	padding: 5px;
+	padding: 5px 20px;
 	border-radius: 25px;
 }
 
 .DisableAccountButtonConfirm {
 	border: 1px solid black;
 	background-color: white;
-	padding: 5px;
 	border-radius: 25px;
+	padding: 5px 20px;
 }
 
 @media screen and (max-width: 480px) {

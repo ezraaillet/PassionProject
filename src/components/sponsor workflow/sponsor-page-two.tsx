@@ -1,13 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
-
+import { FaInfoCircle } from "react-icons/fa";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
 interface SponserWorkflowProps {
@@ -51,84 +42,78 @@ export default function SponsorPageTwo({
   };
 
   return (
-    <div className="sponsee-container">
-      <Row className="mt-4">
-        <Col>
-          <Card className="info-card">
-            <Card.Body>
-              <Card.Title>
-                Become a Sponsor<span className="step">2/5</span>
-              </Card.Title>
-              <Form>
-                <Form.Group controlId="sponsorName" className="card-form-group">
-                  <Form.Label className="card-label">Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Name, Alias, or Initials"
-                    value={sponsorWorkflowContext?.formData.sponsorName}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.name}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your name.
-                  </Form.Control.Feedback>
-                </Form.Group>
+    <div className="sponsor-container">
+      <div className="card">
+        <div className="card-header">
+          <h2>Become a Sponsor</h2>
+        </div>
 
-                <Form.Group
-                  controlId="sponsorPhone"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Phone Number</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your phone number"
-                    value={sponsorWorkflowContext?.formData.sponsorPhone}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.phone}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your phone number.
-                  </Form.Control.Feedback>
-                </Form.Group>
+        <form className="sponsor-form" onSubmit={handleNext}>
+          <div className="form-group">
+            <label htmlFor="sponsorName">Name</label>
+            <input
+              type="text"
+              id="sponsorName"
+              placeholder="Name, Alias, or Initials"
+              value={sponsorWorkflowContext?.formData.sponsorName}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={sponsorWorkflowContext?.formErrors.name ? "error" : ""}
+            />
+            {sponsorWorkflowContext?.formErrors.name && (
+              <span className="error-message">Please enter your name.</span>
+            )}
+          </div>
 
-                <Form.Group
-                  controlId="sponsorMotto"
-                  className="card-form-group"
-                >
-                  <Form.Label className="card-label">Motto</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your motto"
-                    value={sponsorWorkflowContext?.formData.sponsorMotto}
-                    onChange={sponsorWorkflowContext?.handleInputChange}
-                    isInvalid={sponsorWorkflowContext?.formErrors.motto}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your motto.
-                  </Form.Control.Feedback>
-                </Form.Group>
+          <div className="form-group">
+            <label htmlFor="sponsorPhone">Phone Number</label>
+            <input
+              type="text"
+              id="sponsorPhone"
+              placeholder="Enter your phone number"
+              value={sponsorWorkflowContext?.formData.sponsorPhone}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.phone ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.phone && (
+              <span className="error-message">
+                Please enter your phone number.
+              </span>
+            )}
+          </div>
 
-                <Row className="card-buttons-container">
-                  <Col className="card-buttons">
-                    <button onClick={backClicked} className="small-button">
-                      Back
-                    </button>
-                  </Col>
-                  <Col className="card-buttons">
-                    <button
-                      onClick={handleNext}
-                      className="small-button"
-                      type="submit"
-                    >
-                      Next
-                    </button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          <div className="form-group">
+            <label htmlFor="sponsorMotto">Motto</label>
+            <input
+              type="text"
+              id="sponsorMotto"
+              placeholder="Enter your motto"
+              value={sponsorWorkflowContext?.formData.sponsorMotto}
+              onChange={sponsorWorkflowContext?.handleInputChange}
+              className={
+                sponsorWorkflowContext?.formErrors.motto ? "error" : ""
+              }
+            />
+            {sponsorWorkflowContext?.formErrors.motto && (
+              <span className="error-message">Please enter your motto.</span>
+            )}
+          </div>
+
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={backClicked}
+              className="btn-secondary"
+            >
+              Back
+            </button>
+            <button type="submit" className="btn-primary">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

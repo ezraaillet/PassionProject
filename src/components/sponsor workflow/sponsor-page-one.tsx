@@ -49,7 +49,6 @@ export default function SponsorPageOne({
       <div className="card">
         <div className="card-header">
           <h2>Become a Sponsor</h2>
-          <span className="step-indicator">1/5</span>
         </div>
 
         <form className="sponsor-form">
