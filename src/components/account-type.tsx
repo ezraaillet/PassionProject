@@ -1,7 +1,5 @@
 import "../styles/buttons.css";
 
-import { Col, Row } from "react-bootstrap";
-
 import SponseeWorkflow from "./sponsee workflow/sponsee-workflow";
 import { SponseeWorkflowProvider } from "../common/sponsee-workflow-context";
 import SponsorWorkflow from "./sponsor workflow/sponsor-workflow";
@@ -23,24 +21,22 @@ export default function AccountTypes() {
     <>
       {workflowType === null && (
         <div className="account-type-select">
-          <Row>
-            <Col md={6}>
+          <div className="account-type-button-container">
               <button
+              type="button"
                 onClick={() => handleAccountTypeSelect(1)}
                 className="account-type-button"
               >
                 I need a Sponsor
               </button>
-            </Col>
-            <Col md={6}>
               <button
+              type="button"
                 onClick={() => handleAccountTypeSelect(2)}
                 className="account-type-button"
               >
                 Become a Sponsor
               </button>
-            </Col>
-          </Row>
+          </div>
         </div>
       )}
       <SponseeWorkflowProvider>
