@@ -2,6 +2,9 @@ import "../styles/user-search.css";
 
 import { useEffect, useState } from "react";
 import UserService from "../services/user-service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faFilter, faUpLong } from "@fortawesome/free-solid-svg-icons";
+
 interface User {
 	userType: number;
 	sponseeState: string;
@@ -35,7 +38,7 @@ const testDataSponsors: Sponsor[] = [
 		id: "1",
 		sponsorAge: "35",
 		sponsorAvailability: "Evenings",
-		sponsorBio: "I have been a sponsor for 5 years and love helping others.",
+		sponsorBio: "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
 		sponsorFaith: "Christianity",
 		sponsorGender: "Male",
 		sponsorIntensityLevel: "High",
@@ -54,7 +57,7 @@ const testDataSponsors: Sponsor[] = [
 		id: "2",
 		sponsorAge: "42",
 		sponsorAvailability: "Weekends",
-		sponsorBio: "A dedicated sponsor with a passion for guiding sponsees.",
+		sponsorBio: "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
 		sponsorFaith: "Buddhism",
 		sponsorGender: "Female",
 		sponsorIntensityLevel: "Moderate",
@@ -62,7 +65,7 @@ const testDataSponsors: Sponsor[] = [
 		sponsorMotto: "Empathy is my strength.",
 		sponsorName: "Jane Smith",
 		sponsorNumberOfSponsees: "2",
-		sponsorPhone: "+1555-987-6543",
+		sponsorPhone: "+15559876543",
 		sponsorState: "New York",
 		sponsorTimeForSteps: "1 year",
 		sponsorZipcode: "10001",
@@ -73,7 +76,7 @@ const testDataSponsors: Sponsor[] = [
 		id: "3",
 		sponsorAge: "29",
 		sponsorAvailability: "Mornings",
-		sponsorBio: "New to sponsoring but eager to support.",
+		sponsorBio: "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
 		sponsorFaith: "Atheism",
 		sponsorGender: "Non-binary",
 		sponsorIntensityLevel: "Low",
@@ -81,7 +84,7 @@ const testDataSponsors: Sponsor[] = [
 		sponsorMotto: "Take it one step at a time.",
 		sponsorName: "Alex Johnson",
 		sponsorNumberOfSponsees: "1",
-		sponsorPhone: "+1555-654-3210",
+		sponsorPhone: "+15556543210",
 		sponsorState: "Texas",
 		sponsorTimeForSteps: "3 months",
 		sponsorZipcode: "73301",
@@ -92,7 +95,7 @@ const testDataSponsors: Sponsor[] = [
 		id: "4",
 		sponsorAge: "50",
 		sponsorAvailability: "Afternoons",
-		sponsorBio: "I’ve been through it all and I’m here to guide you.",
+		sponsorBio: "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
 		sponsorFaith: "Islam",
 		sponsorGender: "Male",
 		sponsorIntensityLevel: "High",
@@ -100,7 +103,7 @@ const testDataSponsors: Sponsor[] = [
 		sponsorMotto: "Persistence beats resistance.",
 		sponsorName: "Michael Brown",
 		sponsorNumberOfSponsees: "5",
-		sponsorPhone: "+1555-333-2222",
+		sponsorPhone: "+15553332222",
 		sponsorState: "Florida",
 		sponsorTimeForSteps: "2 years",
 		sponsorZipcode: "32003",
@@ -111,15 +114,15 @@ const testDataSponsors: Sponsor[] = [
 		id: "5",
 		sponsorAge: "38",
 		sponsorAvailability: "Flexible",
-		sponsorBio: "A compassionate listener and a dedicated guide.",
-		sponsorFaith: "Hinduism",
+		sponsorBio: "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
+			sponsorFaith: "Hinduism",
 		sponsorGender: "Female",
 		sponsorIntensityLevel: "Moderate",
 		sponsorJob: "Therapist",
 		sponsorMotto: "Growth happens step by step.",
 		sponsorName: "Samantha Green",
 		sponsorNumberOfSponsees: "4",
-		sponsorPhone: "+1555-444-1111",
+		sponsorPhone: "+15554441111",
 		sponsorState: "Illinois",
 		sponsorTimeForSteps: "8 months",
 		sponsorZipcode: "60601",
@@ -130,6 +133,7 @@ const testDataSponsors: Sponsor[] = [
 export default function UserSearch({ user }: UserSearchProps) {
 	const { getUsersByTypeAndState } = UserService();
 	const [sponsors, setSponsors] = useState<Sponsor[]>([]);
+	// const [filterOpen, setFilterOpen] = useState(false);
 
 	useEffect(() => {
 		const loadSponsors = async () => {
@@ -139,6 +143,8 @@ export default function UserSearch({ user }: UserSearchProps) {
 				// setSponsors(sponsorsData || []);
 				setSponsors(testDataSponsors);
 			} catch (error: unknown) {
+				setSponsors(testDataSponsors);
+
 				console.error("Error fetching sponsors:", error);
 			}
 		};
@@ -149,45 +155,97 @@ export default function UserSearch({ user }: UserSearchProps) {
 		}
 	}, []); // Add dependencies to avoid unnecessary re-renders.
 
+	function handleScrollUp() {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}
+
 	return (
-		<>
-			{sponsors.length === 0 && (
-				<div className="search-container">
-					<h1 className="user-search-title">User Search</h1>
-					<p>No sponsors found in your area.</p>
-				</div>
-			)}
-			{sponsors.length > 0 && (
-				<div className="search-container">
-					<div className="title-container">
-						<h1 className="user-search-title">Sponsor Search</h1>
-						<button>Filters</button>
+		<div className="SearchContainer">
+
+			<div className="UpArrowContainer" onClick={handleScrollUp}>
+			<FontAwesomeIcon icon={faUpLong} style={{color: "#000000",}} />
+			</div>
+
+			{/* <div className={`FilterContainer ${filterOpen ? 'open' : ''}`}>
+			<div className={`FilterBox ${filterOpen ? 'open' : ''}`}>
+				<h1>Filters</h1>
+			</div>
+			</div> */}
+
+			<div className="SearchHeading">
+				<h1>Search Sponsors:</h1>
+				{/* <button onClick={() => setFilterOpen(!filterOpen)}>Filters <FontAwesomeIcon icon={faFilter} style={{ color: "#000000", }} /></button> */}
+				<button>Filters <FontAwesomeIcon icon={faFilter} style={{ color: "#000000", }} /></button>
+			</div>
+			<div className="SearchContent">
+				{sponsors.length === 0 && (
+					<h1>No sponsors found in your area.</h1>
+				)}
+
+				{sponsors.map((sponsor) => (
+					<div className="Card">
+						<div className="CardTitle">
+							<h1>{sponsor.sponsorName}</h1>
+							<a href={`tel:${sponsor.sponsorPhone}`}><span><FontAwesomeIcon icon={faPhone} style={{ color: "#000000", }} /></span>{sponsor.sponsorPhone}</a>
+						</div>
+						<div className="CardBody">
+							<span>
+								<p>{`Age: ${sponsor.sponsorAge}`}</p>
+								<p>{`Gender: ${sponsor.sponsorGender}`}</p>
+							</span>
+							<p>{`Religion: ${sponsor.sponsorFaith}`}</p>
+							<p>{`Job: ${sponsor.sponsorJob}`}</p>
+							<p>{`Availability: ${sponsor.sponsorAvailability}`}</p>
+						</div>
+						<div className="CardFooter">
+							<p>bio: </p>
+							<p>{sponsor.sponsorBio}</p>
+						</div>
 					</div>
-					<div className="card-container">
-						{sponsors.map((sponsor) => (
-							<div className="card" key={sponsor.id}>
-								<h2>{sponsor.sponsorName}</h2>
-								<p>
-									{sponsor.sponsorJob} | {sponsor.sponsorFaith}
-								</p>
-								<p>{sponsor.sponsorBio}</p>
-								<p>
-									Age: {sponsor.sponsorAge} | Gender: {sponsor.sponsorGender}
-								</p>
-								<p>Availability: {sponsor.sponsorAvailability}</p>
-								<p>Motto: {sponsor.sponsorMotto}</p>
-								<p>
-									<a href={`tel:${sponsor.sponsorPhone}`}>
-										{sponsor.sponsorPhone}
-									</a>
-									<br />
-									<a href={`mailto:${sponsor.email}`}>{sponsor.email}</a>
-								</p>
-							</div>
-						))}
-					</div>
-				</div>
-			)}
-		</>
+				))}
+			</div>
+		</div>
+		// <>
+		// 	{sponsors.length === 0 && (
+		// 		<div className="search-container">
+		// 			<h1 className="user-search-title">User Search</h1>
+		// 			<p>No sponsors found in your area.</p>
+		// 		</div>
+		// 	)}
+		// 	{sponsors.length > 0 && (
+		// 		<div className="search-container">
+		// 			<div className="title-container">
+		// 				<h1 className="user-search-title">Sponsor Search</h1>
+		// 				<button>Filters</button>
+		// 			</div>
+		// 			<div className="card-container">
+		// 				{sponsors.map((sponsor) => (
+		// 					<div className="card" key={sponsor.id}>
+		// 						<h2>{sponsor.sponsorName}</h2>
+		// 						<p>
+		// 							{sponsor.sponsorJob} | {sponsor.sponsorFaith}
+		// 						</p>
+		// 						<p>{sponsor.sponsorBio}</p>
+		// 						<p>
+		// 							Age: {sponsor.sponsorAge} | Gender: {sponsor.sponsorGender}
+		// 						</p>
+		// 						<p>Availability: {sponsor.sponsorAvailability}</p>
+		// 						<p>Motto: {sponsor.sponsorMotto}</p>
+		// 						<p>
+		// 							<a href={`tel:${sponsor.sponsorPhone}`}>
+		// 								{sponsor.sponsorPhone}
+		// 							</a>
+		// 							<br />
+		// 							<a href={`mailto:${sponsor.email}`}>{sponsor.email}</a>
+		// 						</p>
+		// 					</div>
+		// 				))}
+		// 			</div>
+		// 		</div>
+		// 	)}
+		// </>
 	);
 }

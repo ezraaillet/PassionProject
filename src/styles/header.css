@@ -5,13 +5,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgb(212, 81, 61);
+  background-color: #59C9F2;
   padding: 10px 0;
   text-wrap: nowrap;
 }
 
 .NavbarTitle {
-  color: white;
+  color: black;
   position: absolute;
   left: 0;
   font-size: 2rem;
@@ -41,7 +41,7 @@
   margin-right: 10px;
   border: none;
   border-radius: 25px;
-  color: rgb(212, 81, 61);
+  color: black;
   background-color: white; 
   position: relative;
   overflow: hidden; 
@@ -70,4 +70,3 @@
     display: none;
   }
 }
-
