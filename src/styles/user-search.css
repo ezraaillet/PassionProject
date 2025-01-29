@@ -11,7 +11,7 @@
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background-color: #59c9f2;
+  background-color: var(--primary-color);
   border: 1px solid black;
   display: flex;
   justify-content: center;
@@ -19,32 +19,83 @@
   z-index: 1;
 }
 
-/* .FilterContainer {
-  display: none;
+.FilterContainer {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  transition: right 0.3s ease;
+  z-index: 2;
 }
 
 .FilterContainer.open {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  display: block;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.FilterBox.open {
-  position: fixed;
-  top: 70px;
   right: 0;
-  width: 200px;
-  height: calc(100vh -  70px);
-  background-color: white;
-} */
+}
+
+.FilterBox {
+  padding: 16px;
+  height: 100%;
+  border-left: 1px solid #d1d5da;
+}
+
+.FilterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.FilterHeader h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.CloseButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.FilterSection {
+  margin-bottom: 16px;
+}
+
+.FilterSection h3 {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #57606a;
+}
+
+.FilterSection label {
+  display: block;
+  margin: 8px 0;
+}
+
+.FilterSection input[type="range"] {
+  width: 100%;
+}
+
+.FilterSection input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+}
+
+.ResetButton {
+  width: 100%;
+  padding: 8px;
+  background-color: #f6f8fa;
+  border: 1px solid #d1d5da;
+  cursor: pointer;
+  margin-top: 16px;
+}
 
 .SearchHeading {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
@@ -68,8 +119,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  /* background-color: #c0c0c0; */
-  background-color: rgb(247, 242, 240);
+  background-color: #d2ddfd;
   margin: 10px;
   padding: 15px;
   border-radius: 25px;
@@ -77,9 +127,9 @@
 
 .CardTitle {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: var(--primary-color);
 }
 
 .CardTitle h1 {
@@ -92,7 +142,9 @@
   text-decoration: none;
   font-size: 16px;
   margin: 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid  var(--primary-color);
+  color: var(--primary-color);
+
 }
 
 .CardBody {
@@ -104,7 +156,6 @@
 
 .CardBody span {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 5px;
 }
@@ -113,10 +164,10 @@
   margin: 0;
   font-size: 18px;
   border: 1px solid black;
-  padding: 7px;
+  padding: 10px;
   border-radius: 25px;
   color: black;
-  background-color: white;
+  background-color: var(--secondary-color);
   width: fit-content;
 }
 
@@ -127,15 +178,15 @@
   border: 1px solid black;
   width: 100%;
   color: black;
-  background-color: white;
+  background-color: var(--secondary-color);
   border-radius: 25px;
-  padding: 7px;
+  padding: 10px;
 }
 
 .CardFooter p {
   margin: 0;
 }
 
-.CardFooter p:second-child {
-  min-height: 310px;
+.UpArrowContainer svg {
+  color: black; /* Keep the color of icons black */
 }
