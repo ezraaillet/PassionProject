@@ -5,8 +5,9 @@
   font-family: "Exo", serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-style: regular;
-  line-height: 1.6;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 1.2;
 }
 
 body {
