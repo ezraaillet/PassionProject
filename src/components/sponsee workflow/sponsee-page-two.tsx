@@ -1,53 +1,12 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
-
-import { FaInfoCircle } from "react-icons/fa";
-import { genders } from "../../common/genders";
-import { states } from "../../common/states";
+import FormInput from "../../common/form-input";
 import { useSponseeWorkflowContext } from "../../common/sponsee-workflow-context";
-import { useState } from "react";
 
 interface SponseeWorkflowProps {
-
   backClicked: () => void;
-  nextClicked: () => void;
 }
 
-export default function SponseePageTwo({
-  backClicked,
-  nextClicked,
-}: SponseeWorkflowProps) {
+export default function SponseePageTwo({ backClicked }: SponseeWorkflowProps) {
   const sponseeWorkflowContext = useSponseeWorkflowContext();
-
-  const handleNext = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const errors = {
-      name: !sponseeWorkflowContext?.formData.sponseeName,
-      phone: !sponseeWorkflowContext?.formData.sponseePhone
-    };
-
-    sponseeWorkflowContext?.setFormErrors(errors);
-
-    const isValid = !Object.values(errors).includes(true);
-
-    if (isValid) {
-      console.log(
-        "Form submitted successfully",
-        sponseeWorkflowContext?.formData
-      );
-      nextClicked();
-    } else {
-      console.log("Please fill out all fields");
-    }
-  };
 
   return (
     <div className="sponsor-container">
@@ -56,38 +15,24 @@ export default function SponseePageTwo({
           <h2>Become a Sponsee</h2>
         </div>
 
-        <form className="sponsor-form" onSubmit={handleNext}>
-          <div className="form-group">
-            <label htmlFor="sponseeState">Name</label>
-            <input
-              type="text"
-              id="sponseeName"
-              placeholder="Enter your name"
-              value={sponseeWorkflowContext?.formData.sponseeName}
-              onChange={sponseeWorkflowContext?.handleInputChange}
-              className={sponseeWorkflowContext?.formErrors.name ? 'error' : ''}
-            />
-            {sponseeWorkflowContext?.formErrors.name && (
-              <span className="error-message">Please Enter your name.</span>
-            )}
-          </div>
+        <form
+          className="sponsor-form"
+          onSubmit={sponseeWorkflowContext?.handleSubmit}
+          noValidate
+        >
+          <FormInput
+            label="Name"
+            required={true}
+            name="sponseeName"
+            value={sponseeWorkflowContext?.formData.sponseeName}
+          />
 
-          <div className="form-group">
-            <label htmlFor="sponseePhone">Phone</label>
-            <input
-              type="number"
-              id="sponseePhone"
-              placeholder="Enter your phone number"
-              value={sponseeWorkflowContext?.formData.sponseePhone}
-              onChange={sponseeWorkflowContext?.handleInputChange}
-              className={
-                sponseeWorkflowContext?.formErrors.phone ? "error" : ""
-              }
-            />
-            {sponseeWorkflowContext?.formErrors.phone && (
-              <span className="error-message">Please enter your phone number.</span>
-            )}
-          </div>
+          <FormInput
+            label="Phone Number"
+            required={true}
+            name="sponseePhone"
+            value={sponseeWorkflowContext?.formData.sponseePhone}
+          />
 
           <div className="button-container">
             <button

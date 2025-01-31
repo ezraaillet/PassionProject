@@ -1,4 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { FormEvent, createContext, useContext, useState } from "react";
+
+import UserService from "../services/user-service";
+import { json } from "stream/consumers";
 
 interface SponsorWorkflowFormData {
   sponsorState: string;
@@ -39,10 +42,22 @@ const SponsorWorkflowContext = createContext<{
   setFormData: (data: any) => void;
   formErrors: SponsorWorkflowFormErrors;
   setFormErrors: (errors: any) => void;
-  handleInputChange: (e: any) => void;
-} | null>(null);
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  workflowStep: number;
+  handleBackClick: () => void;
+}>({
+  formData: {} as SponsorWorkflowFormData,
+  setFormData: () => {},
+  formErrors: {} as SponsorWorkflowFormErrors,
+  setFormErrors: () => {},
+  handleSubmit: () => {},
+  workflowStep: 1,
+  handleBackClick: () => {},
+});
 
 const SponsorWorkflowProvider = ({ children }: { children: any }) => {
+  const [workflowStep, setWorkflowStep] = useState(1);
+  const { createUser } = UserService();
   const [formData, setFormData] = useState({
     sponsorState: "",
     sponsorZipcode: "",
@@ -77,10 +92,74 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     intensityLevel: false,
   });
 
-  const handleInputChange = (e: any) => {
-    const { id, value } = e.target as HTMLInputElement | HTMLSelectElement;
-    setFormData((prevState) => ({ ...prevState, [id]: value }));
-    setFormErrors((prevState) => ({ ...prevState, [id]: false }));
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+
+    if (!form.checkValidity()) return;
+
+    const updatedFormData = new FormData(form);
+    const jsonFormData = Object.fromEntries(updatedFormData.entries()) as {
+      [key: string]: string;
+    };
+
+    console.log("New Form Data:", jsonFormData);
+
+    // set updated form data
+    setFormData((prevFormData) => {
+      const newFormData = { ...prevFormData, ...jsonFormData };
+
+      // if last step of workflow
+      if (workflowStep === 5) {
+        createUser(newFormData, 2);
+      }
+
+      return newFormData;
+    });
+
+    setWorkflowStep(workflowStep + 1);
+  };
+
+  const handleBackClick = () => {
+    if (workflowStep === 1) {
+      // clear forms and errors
+      setFormData({
+        sponsorState: "",
+        sponsorZipcode: "",
+        sponsorGender: "",
+        sponsorName: "",
+        sponsorPhone: "",
+        sponsorMotto: "",
+        sponsorAge: "",
+        sponsorJob: "",
+        sponsorNumberOfSponsees: "",
+        sponsorBio: "",
+        sponsorAvailability: "",
+        sponsorFaith: "",
+        sponsorTimeForSteps: "",
+        sponsorIntensityLevel: "",
+      });
+      setFormErrors({
+        state: false,
+        zipcode: false,
+        gender: false,
+        name: false,
+        phone: false,
+        motto: false,
+        age: false,
+        job: false,
+        numberOfSponsees: false,
+        bio: false,
+        availability: false,
+        faith: false,
+        stepTime: false,
+        intensityLevel: false,
+      });
+      setWorkflowStep(1);
+    } else {
+      setWorkflowStep(workflowStep - 1);
+    }
   };
 
   const props = {
@@ -88,7 +167,9 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     setFormData,
     formErrors,
     setFormErrors,
-    handleInputChange,
+    handleSubmit,
+    workflowStep,
+    handleBackClick,
   };
 
   return (

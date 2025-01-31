@@ -5,7 +5,7 @@
   font-family: "Exo", serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-style: italic;
+  font-style: regular;
   line-height: 1.6;
 }
 
@@ -15,9 +15,9 @@ body {
 }
 
 :root {
-  --background-color: #FBFBFC;
-  --primary-color: #4D68B9;
-  --secondary-color: #97ABE6;
-  --accent-color: #5E82ED;
-  --text-color: #09090A;
+  --background-color: #fbfbfc;
+  --primary-color: #4d68b9;
+  --secondary-color: #97abe6;
+  --accent-color: #5e82ed;
+  --text-color: #09090a;
 }

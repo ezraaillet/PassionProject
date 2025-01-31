@@ -1,11 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function UserService() {
-  const url: string = process.env.REACT_APP_LOCAL_API_URL!;
   const prodUrl: string = process.env.REACT_APP_PROD_API_URL!;
-  const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
+  const { user } = useAuth0();
 
   async function createUser(userToInsert: any, userType: number) {
+    debugger;
     userToInsert.email = user?.email;
     userToInsert.userType = userType;
     try {
