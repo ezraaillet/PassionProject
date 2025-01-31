@@ -16,9 +16,37 @@ body {
 }
 
 :root {
-  --background-color: #fbfbfc;
-  --primary-color: #4d68b9;
-  --secondary-color: #97abe6;
-  --accent-color: #5e82ed;
+  --background-color: hsl(35, 100, 95);
+  --primary-color: hsl(238, 95%, 36%);
+  --accent-color: hsl(206, 95%, 36%);
   --text-color: #09090a;
+}
+
+.global-button {
+  width: 300px;
+  font-size: 20px;
+  height: 60px;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.global-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0; 
+  height: 100%;
+  width: 0; 
+  background-color: hsl(206, 95%, 36%);
+  z-index: -1; 
+  transition: width 0.3s ease; 
+  border-radius: 4px;
+}
+
+.global-button:hover::before {
+  width: 100%; 
 }

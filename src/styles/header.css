@@ -1,19 +1,18 @@
 .NavbarContainer {
   height: 70px;
   display: flex;
-  /* width: 100vw; */
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #d2ddfd;
+  background-color: hsl(35, 100, 95);
   padding: 10px 0;
-  /* //Drop shadow */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #797979;
   text-wrap: nowrap;
 }
 
 .NavbarTitle {
-  color: black;
+  color: #050bb3;
   position: absolute;
   left: 0;
   font-size: 2rem;
@@ -27,7 +26,7 @@
 }
 
 .ButtonSection h1 {
-  color: white;
+  color: var(--accent-color);
   font-size: 1.1rem;
   align-self: center;
   margin: 0 10px
@@ -43,8 +42,8 @@
   margin-right: 10px;
   border: none;
   border-radius: 25px;
-  color: black;
-  background-color: var(--secondary-color); 
+  color: white;
+  background-color: var(--primary-color); 
   position: relative;
   overflow: hidden; 
   z-index: 1;
@@ -57,7 +56,7 @@
   left: 0; 
   height: 100%;
   width: 0; 
-  background-color: #f3e9dc;
+  background-color: var(--accent-color);
   z-index: -1; 
   transition: width 0.3s ease; 
 }
