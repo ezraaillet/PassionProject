@@ -208,7 +208,7 @@ export default function UserSearch({ user }: UserSearchProps) {
         onClick={handleScrollUp}
         onKeyDown={handleScrollUp}
       >
-        <FontAwesomeIcon icon={faUpLong} style={{ color: "#000000" }} />
+        <FontAwesomeIcon icon={faUpLong} style={{ color: "#fff" }} />
       </div>
 
       <UserFilterDrawer

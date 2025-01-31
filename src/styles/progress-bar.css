@@ -12,7 +12,7 @@
 
 .ProgressBarFill {
 	height: 100%;
-	background-color: rgb(212, 81, 61);
+	background-color: var(--primary-color);
 	border-radius: 12px;
 	position: absolute;
 	left: 0;
@@ -32,7 +32,7 @@
 	height: 30px;
 	width: 30px;
 	background-color: #ffffff;
-	color: rgb(212, 81, 61);
+	color: var(--primary-color);
 	font-size: 13px;
 	font-weight: bold;
 	border-radius: 50%;

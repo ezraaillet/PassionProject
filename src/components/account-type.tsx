@@ -25,14 +25,14 @@ export default function AccountTypes() {
               <button
               type="button"
                 onClick={() => handleAccountTypeSelect(1)}
-                className="account-type-button"
+                className="global-button"
               >
                 I need a Sponsor
               </button>
               <button
               type="button"
                 onClick={() => handleAccountTypeSelect(2)}
-                className="account-type-button"
+                className="global-button"
               >
                 Become a Sponsor
               </button>
