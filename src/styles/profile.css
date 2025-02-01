@@ -1,209 +1,69 @@
 .ProfilePageContainer {
-  margin: 1rem auto;
-  max-width: 800px;
-  padding: 1.5rem;
-  border: 1px solid rgb(212, 81, 61);
-  border-radius: 10px;
-  background-color: #fdf5e6;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	height: calc(100vh - 110px);
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: left;
+	box-sizing: border-box;
+	border: 1px solid black;
+	margin: 20px;
+	background-color: var(--background-color);
+  border-radius: 12px;
+}
+
+.ProfileEmail {
+  margin: 0;
 }
 
 .ProfilePageHeader {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
   align-items: center;
-  margin-bottom: 2rem;
-  text-align: center;
+  border-bottom: 1px solid black;
 }
 
-.ProfileImage {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid #ddd;
-  margin-bottom: 1rem;
-}
-
-.ProfileEmail {
-  font-size: 1rem;
-  color: #333;
-  word-break: break-word;
-}
-
-.ProfilePageData {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.2rem;
-}
-
-.ProfilePageDataItem {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0.5rem 1rem;
-  gap: 0.2rem;
-}
-
-.ProfilePageDataTitle {
-  font-weight: bold;
-  color: #333;
-  flex: 0 0 120px;
-  text-align: left;
-}
-
-.ProfilePageDataItem p {
-  flex: 1;
-  text-align: left;
-  margin: 0;
-  color: #555;
-}
-
-.edit-icon {
-  font-size: 1rem;
-  color: #007bff;
-  cursor: pointer;
-}
-
-.edit-icon:hover {
-  color: #0056b3;
-}
-
-.DeleteAccountButton {
-  background-color: rgb(212, 81, 61);
-  border: none;
-  border-radius: 25px;
-  padding: 10px;
-  margin-top: 30px;
-}
-
-.DisableAccountModalContainer {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.DisableAccountModalContent {
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.DisableAccountModalContent p {
+.ProfilePageHeader h1 {
+  color: var(--primary-color);
   margin: 0;
 }
 
-.DisableAccountWarning {
-  width: 375px;
-  background-color: rgba(212, 81, 61, 0.3);
-  border-left: 4px solid #d4513d;
-  padding: 10px;
-  margin: 20px 0;
-  font-size: 0.9rem;
-}
-
-.DisableAccountModalTitle {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.DisableAccountWarning p {
-  line-height: 0.2rem;
+.ProfileContactInfo {
   color: black;
 }
 
-.DisableAccountButtonContainer {
-  width: 100%;
+.ProfilePageData {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+}
+
+.ProfilePageDataPair {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
-.DisableAccountButtonCancel {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 5px 20px;
-  border-radius: 25px;
+
+p {
+  margin: 0;
 }
 
-.DisableAccountButtonConfirm {
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 25px;
-  padding: 5px 20px;
+.ProfilePageDataTitle {
+  width: 120px;
+  text-align: left;
 }
 
-@media screen and (max-width: 480px) {
-  .ProfilePageContainer {
-    margin: 1rem auto;
-    max-width: 90%;
-    padding: 1rem;
-  }
-
-  .ProfileImage {
-    width: 100px;
-    height: 100px;
-  }
-
-  .ProfilePageDataItem {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.5rem;
-  }
-
-  .ProfilePageDataTitle {
-    flex: none;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .ProfilePageDataItem p {
-    text-align: left;
-    font-size: 0.9rem;
-  }
-
-  .edit-icon {
-    align-self: flex-start;
-    margin-top: 0.5rem;
-  }
+.ProfilePageDataValue {
+  margin-left: 10px;
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  .ProfilePageContainer {
-    max-width: 90%;
-    padding: 1.5rem;
-  }
-
-  .ProfileImage {
-    width: 110px;
-    height: 110px;
-  }
-
-  .ProfilePageDataItem {
-    gap: 0.5rem;
-  }
-}
-
-@media screen and (min-width: 769px) {
-  .ProfilePageContainer {
-    max-width: 70%;
-  }
-
-  .ProfilePageDataItem {
-    padding: 0.75rem 1rem;
-  }
+.ButtonContainer {
+  margin: 20px 20px;
 }
