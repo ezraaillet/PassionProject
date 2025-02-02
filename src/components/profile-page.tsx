@@ -106,9 +106,8 @@ export default function ProfilePage({ user }: any) {
 							{ label: "Gender", value: userProfile.gender },
 							{ label: "Motto", value: userProfile.motto },
 							{ label: "Age", value: userProfile.age },
-							{ label: "Job", value: userProfile.job },
 							{
-								label: "Sponsees",
+                label: "Sponsees",
 								value: userProfile.numberOfSponsees,
 							},
 							{ label: "Bio", value: userProfile.bio },
@@ -116,9 +115,10 @@ export default function ProfilePage({ user }: any) {
 							{ label: "Faith", value: userProfile.faith },
 							{ label: "Time for Steps", value: userProfile.timeForSteps },
 							{ label: "Intensity", value: userProfile.intensityLevel },
+              { label: "Job", value: userProfile.job },
 						].map((field, index) => (
 							<div className="ProfilePageDataPair" key={index}>
-								<p className="ProfilePageDataTitle">{field.label}:</p>
+								<p className="ProfilePageDataTitle"><strong>{field.label}:</strong></p>
 								<p className="ProfilePageDataValue">{field.value}</p>
 							</div>
 						))}
