@@ -28,7 +28,7 @@ app.http("GetUserByEmail", {
         .fetchAll();
 
       if (!userDocuments || userDocuments.length === 0) {
-        return { status: 404, body: "User not found" };
+        return { status: 204 }; // No content
       }
 
       return {

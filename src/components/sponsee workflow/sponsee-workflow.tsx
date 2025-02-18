@@ -24,7 +24,6 @@ export default function SponseeWorkflow({ backClicked }: SponseeWorkflowProps) {
     backClicked();
   };
 
-  debugger;
   return (
     <>
       {sponseeWorkflowContext.workflowStep < 3 && (

@@ -23,12 +23,12 @@ export default function LandingPage() {
           const userData = await getUserByEmail(user.email);
           if (userData) {
             setLoggedInUser(userData);
-          }
-        } catch (error: any) {
-          if (error.message === "Error: Not Found") {
+          } else {
             setShowAccountTypeButtons(true);
           }
+        } catch (error: any) {
           console.error("Error fetching user:", error);
+          setShowAccountTypeButtons(true);
         } finally {
           setLoading(false); // Stop loading after user is fetched
         }

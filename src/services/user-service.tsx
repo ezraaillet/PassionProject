@@ -5,7 +5,6 @@ export default function UserService() {
   const { user } = useAuth0();
 
   async function createUser(userToInsert: any, userType: number) {
-    debugger;
     userToInsert.email = user?.email;
     userToInsert.userType = userType;
     try {
@@ -41,6 +40,11 @@ export default function UserService() {
         throw new Error(`Error: ${response.statusText}`);
       }
 
+      if (response.status === 204) {
+        return null;
+      }
+
+      // Optionally, check for a message property or other indicator
       return await response.json(); // Return the response data
     } catch (error) {
       console.error("Error fetching user:", error);
