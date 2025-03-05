@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  height: calc(100vh - 70px); /* Full viewport height */
+  height: calc(100vh - 120px); /* Full viewport height */
 }
 
 .spinner {

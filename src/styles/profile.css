@@ -1,6 +1,6 @@
 .ProfilePageContainer {
   display: flex;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 160px);
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
