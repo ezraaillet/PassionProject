@@ -34,6 +34,13 @@ export default function SponsorPageFive({ backClicked }: SponserWorkflowProps) {
             value={sponsorWorkflowContext?.formData.sponsorIntensityLevel}
           />
 
+          <FormInput
+            label="Recovery Time"
+            required={true}
+            name="sponsorRecoveryTime"
+            value={sponsorWorkflowContext?.formData.sponsorRecoveryTime}
+          />
+
           <div className="button-container">
             <button
               type="button"

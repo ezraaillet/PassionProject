@@ -1,4 +1,6 @@
 import "./App.css";
+
+import Footer from "./common/footer";
 import Header from "./common/header";
 import LandingPage from "./components/landing-page";
 
@@ -7,6 +9,7 @@ function App() {
     <div>
       <Header />
       <LandingPage />
+      <Footer />
     </div>
   );
 }

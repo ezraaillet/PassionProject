@@ -1,6 +1,7 @@
 import { FaInfoCircle } from "react-icons/fa";
 import FormInput from "../../common/form-input";
 import { genders } from "../../common/genders";
+import { homegroups } from "../../common/homegroups";
 import { states } from "../../common/states";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
@@ -23,6 +24,14 @@ export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
           onSubmit={sponsorWorkflowContext?.handleSubmit}
           noValidate
         >
+          <FormInput
+            label="Home Group"
+            required={true}
+            name="sponsorHomeGroup"
+            value={sponsorWorkflowContext?.formData.sponsorHomeGroup}
+            options={homegroups}
+          />
+
           <FormInput
             label="State"
             required={true}

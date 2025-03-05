@@ -18,6 +18,8 @@ interface SponsorWorkflowFormData {
   sponsorFaith: string;
   sponsorTimeForSteps: string;
   sponsorIntensityLevel: string;
+  sponsorRecoveryTime: string;
+  sponsorHomeGroup: string;
 }
 
 interface SponsorWorkflowFormErrors {
@@ -35,6 +37,8 @@ interface SponsorWorkflowFormErrors {
   faith: boolean;
   stepTime: boolean;
   intensityLevel: boolean;
+  recoveryTime: boolean;
+  homeGroup: boolean;
 }
 
 const SponsorWorkflowContext = createContext<{
@@ -73,6 +77,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     sponsorFaith: "",
     sponsorTimeForSteps: "",
     sponsorIntensityLevel: "",
+    sponsorRecoveryTime: "",
+    sponsorHomeGroup: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -90,6 +96,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     faith: false,
     stepTime: false,
     intensityLevel: false,
+    recoveryTime: false,
+    homeGroup: false,
   });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -139,6 +147,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
         sponsorFaith: "",
         sponsorTimeForSteps: "",
         sponsorIntensityLevel: "",
+        sponsorRecoveryTime: "",
+        sponsorHomeGroup: "",
       });
       setFormErrors({
         state: false,
@@ -155,6 +165,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
         faith: false,
         stepTime: false,
         intensityLevel: false,
+        recoveryTime: false,
+        homeGroup: false,
       });
       setWorkflowStep(1);
     } else {
