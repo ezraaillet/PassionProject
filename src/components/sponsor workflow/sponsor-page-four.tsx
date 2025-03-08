@@ -29,14 +29,14 @@ export default function SponsorPageFour({ backClicked }: SponserWorkflowProps) {
 
           <FormInput
             label="Availability"
-            required={true}
+            required={false}
             name="sponsorAvailability"
             value={sponsorWorkflowContext?.formData.sponsorAvailability}
           />
 
           <FormInput
             label="Faith"
-            required={true}
+            required={false}
             name="sponsorFaith"
             value={sponsorWorkflowContext?.formData.sponsorFaith}
           />

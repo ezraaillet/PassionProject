@@ -24,21 +24,21 @@ export default function SponsorPageThree({
         >
           <FormInput
             label="Age"
-            required={true}
+            required={false}
             name="sponsorAge"
             value={sponsorWorkflowContext?.formData.sponsorAge}
           />
 
           <FormInput
             label="Job"
-            required={true}
+            required={false}
             name="sponsorJob"
             value={sponsorWorkflowContext?.formData.sponsorJob}
           />
 
           <FormInput
             label="Number of Sponsees"
-            required={true}
+            required={false}
             name="sponsorNumberOfSponsees"
             value={sponsorWorkflowContext?.formData.sponsorNumberOfSponsees}
           />

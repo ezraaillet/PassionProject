@@ -22,14 +22,14 @@ export default function SponsorPageFive({ backClicked }: SponserWorkflowProps) {
         >
           <FormInput
             label="Time to complete steps"
-            required={true}
+            required={false}
             name="sponsorTimeForSteps"
             value={sponsorWorkflowContext?.formData.sponsorTimeForSteps}
           />
 
           <FormInput
             label="Intensity Level"
-            required={true}
+            required={false}
             name="sponsorIntensityLevel"
             value={sponsorWorkflowContext?.formData.sponsorIntensityLevel}
           />
