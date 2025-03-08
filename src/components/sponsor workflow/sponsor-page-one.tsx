@@ -5,11 +5,11 @@ import { homegroups } from "../../common/homegroups";
 import { states } from "../../common/states";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
-interface SponserWorkflowProps {
+interface SponsorWorkflowProps {
   backClicked: () => void;
 }
 
-export default function SponsorPageOne({ backClicked }: SponserWorkflowProps) {
+export default function SponsorPageOne({ backClicked }: SponsorWorkflowProps) {
   const sponsorWorkflowContext = useSponsorWorkflowContext();
 
   return (

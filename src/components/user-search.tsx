@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserService from "../services/user-service";
+import { homegroups } from "../common/homegroups";
 
 interface User {
   userType: number;
@@ -38,128 +39,27 @@ interface Sponsor {
   sponsorState: string;
   sponsorTimeForSteps: string;
   sponsorZipcode: string;
+  sponsorHomeGroup: string;
+  sponsorRecoveryTime: string;
   userType: number;
 }
-
-const testDataSponsors: Sponsor[] = [
-  {
-    email: "john.doe@example.com",
-    id: "1",
-    sponsorAge: "35",
-    sponsorAvailability: "Evenings",
-    sponsorBio:
-      "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
-    sponsorFaith: "Christianity",
-    sponsorGender: "Male",
-    sponsorIntensityLevel: "High",
-    sponsorJob: "Software Engineer",
-    sponsorMotto: "Helping others is the key to success.",
-    sponsorName: "John Doe",
-    sponsorNumberOfSponsees: "3",
-    sponsorPhone: "+15551234567",
-    sponsorState: "California",
-    sponsorTimeForSteps: "6 months",
-    sponsorZipcode: "90001",
-    userType: 1,
-  },
-  {
-    email: "jane.smith@example.com",
-    id: "2",
-    sponsorAge: "42",
-    sponsorAvailability: "Weekends",
-    sponsorBio:
-      "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
-    sponsorFaith: "Buddhism",
-    sponsorGender: "Female",
-    sponsorIntensityLevel: "Moderate",
-    sponsorJob: "Teacher",
-    sponsorMotto: "Empathy is my strength.",
-    sponsorName: "Jane Smith",
-    sponsorNumberOfSponsees: "2",
-    sponsorPhone: "+15559876543",
-    sponsorState: "New York",
-    sponsorTimeForSteps: "1 year",
-    sponsorZipcode: "10001",
-    userType: 1,
-  },
-  {
-    email: "alex.johnson@example.com",
-    id: "3",
-    sponsorAge: "29",
-    sponsorAvailability: "Mornings",
-    sponsorBio:
-      "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
-    sponsorFaith: "Atheism",
-    sponsorGender: "Female",
-    sponsorIntensityLevel: "Low",
-    sponsorJob: "Freelancer",
-    sponsorMotto: "Take it one step at a time.",
-    sponsorName: "Alex Johnson",
-    sponsorNumberOfSponsees: "1",
-    sponsorPhone: "+15556543210",
-    sponsorState: "Texas",
-    sponsorTimeForSteps: "3 months",
-    sponsorZipcode: "73301",
-    userType: 1,
-  },
-  {
-    email: "michael.brown@example.com",
-    id: "4",
-    sponsorAge: "50",
-    sponsorAvailability: "Afternoons",
-    sponsorBio:
-      "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
-    sponsorFaith: "Islam",
-    sponsorGender: "Male",
-    sponsorIntensityLevel: "High",
-    sponsorJob: "Retired",
-    sponsorMotto: "Persistence beats resistance.",
-    sponsorName: "Michael Brown",
-    sponsorNumberOfSponsees: "5",
-    sponsorPhone: "+15553332222",
-    sponsorState: "Florida",
-    sponsorTimeForSteps: "2 years",
-    sponsorZipcode: "32003",
-    userType: 1,
-  },
-  {
-    email: "samantha.green@example.com",
-    id: "5",
-    sponsorAge: "38",
-    sponsorAvailability: "Flexible",
-    sponsorBio:
-      "I have been a sponsor for 5 years and love helping others. My main goal is to blow up, and act like I dont know nobody ahahahahahahahhahahaahha",
-    sponsorFaith: "Hinduism",
-    sponsorGender: "Female",
-    sponsorIntensityLevel: "Moderate",
-    sponsorJob: "Therapist",
-    sponsorMotto: "Growth happens step by step.",
-    sponsorName: "Samantha Green",
-    sponsorNumberOfSponsees: "4",
-    sponsorPhone: "+15554441111",
-    sponsorState: "Illinois",
-    sponsorTimeForSteps: "8 months",
-    sponsorZipcode: "60601",
-    userType: 1,
-  },
-];
 
 export default function UserSearch({ user }: UserSearchProps) {
   const { getUsersByTypeAndState } = UserService();
   const [sponsors, setSponsors] = useState<Sponsor[]>([]);
-  // const [filteredSponsors, setFilteredSponsors] = useState<Sponsor[]>([]);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     gender: "",
     ageRange: [18, 100],
     zipCode: "",
+    homeGroup: "",
   });
 
   useEffect(() => {
     const loadSponsors = async () => {
       try {
         const sponsorsData = await getUsersByTypeAndState(2, user.sponseeState);
-        console.log(sponsorsData);
+
         setSponsors(sponsorsData || []);
       } catch (error) {
         console.error("Error fetching sponsors:", error);
@@ -178,22 +78,24 @@ export default function UserSearch({ user }: UserSearchProps) {
     });
   };
 
+  const getLabelByValue = (value: string) => {
+    const group = homegroups.find((group) => group.value === value);
+    return group ? group.label : "Not Found";
+  };
+
   const getFilteredSponsors = (): Sponsor[] => {
-    const { gender, ageRange, zipCode } = filterOptions;
+    const { gender, ageRange, zipCode, homeGroup } = filterOptions;
 
     return sponsors.filter((sponsor) => {
-      if (gender && sponsor.sponsorGender !== gender) {
-        return false;
-      }
+      if (gender && sponsor.sponsorGender !== gender) return false;
 
-      const sponsorAge = Number.parseInt(sponsor.sponsorAge, 10);
-      if (sponsorAge < ageRange[0] || sponsorAge > ageRange[1]) {
-        return false;
-      }
+      if (zipCode && sponsor.sponsorZipcode !== zipCode) return false;
 
-      if (zipCode && sponsor.sponsorZipcode !== zipCode) {
-        return false;
-      }
+      if (homeGroup && sponsor.sponsorHomeGroup !== homeGroup) return false;
+
+      const sponsorAge = Number(sponsor.sponsorAge);
+      if (sponsorAge === 0) return true;
+      if (sponsorAge < ageRange[0] || sponsorAge > ageRange[1]) return false;
 
       return true;
     });
@@ -244,13 +146,60 @@ export default function UserSearch({ user }: UserSearchProps) {
             </div>
             <div className="CardBody">
               <span>
-                <p>{`Age: ${sponsor.sponsorAge}`}</p>
-                <p>{`Gender: ${sponsor.sponsorGender}`}</p>
+                {sponsor.sponsorHomeGroup && (
+                  <p>{`Home Group: ${getLabelByValue(
+                    sponsor.sponsorHomeGroup
+                  )}`}</p>
+                )}
+                {sponsor.sponsorAge && <p>{`Age: ${sponsor.sponsorAge}`}</p>}
+                {sponsor.sponsorGender && (
+                  <p>{`Gender: ${sponsor.sponsorGender}`}</p>
+                )}
+                {sponsor.sponsorState && (
+                  <p>{`State: ${sponsor.sponsorState}`}</p>
+                )}
               </span>
-              <p>{`Religion: ${sponsor.sponsorFaith}`}</p>
-              <p>{`Job: ${sponsor.sponsorJob}`}</p>
-              <p>{`Availability: ${sponsor.sponsorAvailability}`}</p>
+
+              <span>
+                {sponsor.sponsorZipcode && (
+                  <p>{`Zip Code: ${sponsor.sponsorZipcode}`}</p>
+                )}
+                {sponsor.sponsorFaith && (
+                  <p>{`Religion: ${sponsor.sponsorFaith}`}</p>
+                )}
+                {sponsor.sponsorJob && <p>{`Job: ${sponsor.sponsorJob}`}</p>}
+                {sponsor.sponsorAvailability && (
+                  <p>{`Availability: ${sponsor.sponsorAvailability}`}</p>
+                )}
+              </span>
+
+              <span>
+                {sponsor.sponsorMotto && (
+                  <p>{`Motto: ${sponsor.sponsorMotto}`}</p>
+                )}
+                {sponsor.sponsorBio && <p>{`Bio: ${sponsor.sponsorBio}`}</p>}
+                {sponsor.sponsorNumberOfSponsees && (
+                  <p>{`Number of Sponsees: ${sponsor.sponsorNumberOfSponsees}`}</p>
+                )}
+                {sponsor.sponsorTimeForSteps && (
+                  <p>{`Time for Steps: ${sponsor.sponsorTimeForSteps}`}</p>
+                )}
+              </span>
+
+              <span>
+                {sponsor.sponsorIntensityLevel && (
+                  <p>{`Intensity Level: ${sponsor.sponsorIntensityLevel}`}</p>
+                )}
+                {sponsor.sponsorRecoveryTime && (
+                  <p>{`Recovery Time: ${sponsor.sponsorRecoveryTime}`}</p>
+                )}
+                {sponsor.email && <p>{`Email: ${sponsor.email}`}</p>}
+                {sponsor.sponsorPhone && (
+                  <p>{`Phone: ${sponsor.sponsorPhone}`}</p>
+                )}
+              </span>
             </div>
+
             <div className="CardFooter">
               <p>bio: </p>
               <p>{sponsor.sponsorBio}</p>

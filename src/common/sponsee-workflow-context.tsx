@@ -67,8 +67,6 @@ const SponseeWorkflowProvider = ({ children }: { children: any }) => {
       [key: string]: string;
     };
 
-    console.log("New Form Data:", jsonFormData);
-
     // set updated form data
     setFormData((prevFormData) => {
       const newFormData = { ...prevFormData, ...jsonFormData };

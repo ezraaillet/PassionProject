@@ -1,13 +1,13 @@
 import FormInput from "../../common/form-input";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
-interface SponserWorkflowProps {
+interface SponsorWorkflowProps {
   backClicked: () => void;
 }
 
 export default function SponsorPageThree({
   backClicked,
-}: SponserWorkflowProps) {
+}: SponsorWorkflowProps) {
   const sponsorWorkflowContext = useSponsorWorkflowContext();
 
   return (

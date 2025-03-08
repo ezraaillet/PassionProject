@@ -38,7 +38,6 @@ export default function FormInput({
       | HTMLTextAreaElement
       | HTMLSelectElement;
 
-    console.log(input.validationMessage, e.type);
     setError(input.validationMessage ? input.validationMessage ?? "" : "");
   };
 

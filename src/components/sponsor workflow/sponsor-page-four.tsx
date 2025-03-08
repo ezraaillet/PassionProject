@@ -1,11 +1,11 @@
 import FormInput from "../../common/form-input";
 import { useSponsorWorkflowContext } from "../../common/sponsor-workflow-context";
 
-interface SponserWorkflowProps {
+interface SponsorWorkflowProps {
   backClicked: () => void;
 }
 
-export default function SponsorPageFour({ backClicked }: SponserWorkflowProps) {
+export default function SponsorPageFour({ backClicked }: SponsorWorkflowProps) {
   const sponsorWorkflowContext = useSponsorWorkflowContext();
 
   return (
