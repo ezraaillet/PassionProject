@@ -1,5 +1,8 @@
 footer {
+  position: fixed;
+  top: calc(100vh - 50px);
   height: 50px;
+  width: 100%;
   background-color: rgba(18, 18, 18, 0.75);
   display: flex;
   justify-content: center;

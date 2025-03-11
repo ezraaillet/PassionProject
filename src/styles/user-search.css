@@ -3,12 +3,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center content vertically */
-  min-height: 100vh; /* Ensure it fills the page */
+  justify-content: center;
   width: 100%;
-  padding: 1rem;
+  padding: 10px;
   background-color: #f8f9fa;
   overflow: hidden; /* Prevent unwanted scrolling */
+}
+
+.SearchContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Back to Top Button */
@@ -78,8 +84,9 @@
 .SearchHeading {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  margin: 10px;
+  margin: 10px 0;
   width: 90%;
   max-width: 600px;
 }
@@ -188,7 +195,7 @@
   }
 
   .SearchHeading {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
   }
 
