@@ -1,30 +1,43 @@
+/* Search Container */
 .SearchContainer {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 120px);
-  line-height: 100%;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  min-height: 100vh; /* Ensure it fills the page */
+  width: 100%;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  overflow: hidden; /* Prevent unwanted scrolling */
 }
 
+/* Back to Top Button */
 .UpArrowContainer {
   position: fixed;
-  bottom: 5px;
-  right: 5px;
-  width: 60px;
-  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   background-color: var(--primary-color);
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 1000; /* Higher z-index to keep it above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.UpArrowContainer svg {
+  color: white;
+}
+
+/* Filter Drawer */
 .FilterContainer {
   position: fixed;
   top: 0;
-  right: -300px;
-  width: 300px;
+  right: -320px; /* Adjusted width */
+  width: 320px;
   height: 100%;
   background-color: white;
   transition: right 0.3s ease;
@@ -41,6 +54,7 @@
   border-left: 1px solid #d1d5da;
 }
 
+/* Filter Header */
 .FilterHeader {
   display: flex;
   justify-content: space-between;
@@ -60,46 +74,14 @@
   font-size: 16px;
 }
 
-.FilterSection {
-  margin-bottom: 16px;
-}
-
-.FilterSection h3 {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-  color: #57606a;
-}
-
-.FilterSection label {
-  display: block;
-  margin: 8px 0;
-}
-
-.FilterSection input[type="range"] {
-  width: 100%;
-}
-
-.FilterSection input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 4px;
-}
-
-.ResetButton {
-  width: 100%;
-  padding: 8px;
-  background-color: #f6f8fa;
-  border: 1px solid #d1d5da;
-  cursor: pointer;
-  margin-top: 16px;
-}
-
+/* Search Heading */
 .SearchHeading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  width: 90%;
+  max-width: 600px;
 }
 
 .SearchHeading h1 {
@@ -115,6 +97,7 @@
   padding: 5px;
 }
 
+/* Card Styles */
 .Card {
   color: black;
   display: flex;
@@ -124,6 +107,8 @@
   margin: 10px;
   padding: 15px;
   border-radius: 25px;
+  width: 90%;
+  max-width: 500px;
 }
 
 .CardTitle {
@@ -143,35 +128,40 @@
   text-decoration: none;
   font-size: 16px;
   margin: 0;
-  border-bottom: 2px solid  var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
   color: var(--primary-color);
-
 }
 
 .CardBody {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-.CardBody span {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.CardBody p {
-  margin: 0;
-  font-size: 18px;
-  border: 1px solid black;
-  padding: 10px;
-  border-radius: 25px;
-  color: black;
-  background-color: var(--secondary-color);
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: fit-content;
 }
 
+.primary-info {
+  padding: 1rem;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.secondary-info,
+.additional-details,
+.other-info {
+  padding: 0.75rem;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Card Footer */
 .CardFooter {
   margin-top: 5px;
   display: flex;
@@ -188,6 +178,22 @@
   margin: 0;
 }
 
-.UpArrowContainer svg {
-  color: white;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .UpArrowContainer {
+    width: 45px;
+    height: 45px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .SearchHeading {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .FilterContainer {
+    width: 100%; /* Full-width filter for mobile */
+    right: -100%;
+  }
 }
