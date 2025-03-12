@@ -17,6 +17,13 @@
   width: 100%;
 }
 
+.NoSponsors {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
 /* Back to Top Button */
 .UpArrowContainer {
   position: fixed;
@@ -71,6 +78,34 @@
 .FilterHeader h2 {
   font-size: 16px;
   margin: 0;
+}
+
+.FilterSection {
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.FilterSection input[type="range"] {
+  width: 100%;
+}
+
+.FilterSection select {
+  width: 100%;
+  padding: 8px;
+}
+
+.FilterSection input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+}
+
+.FilterSection label {
+  display: block;
+  margin: 8px 0;
 }
 
 .CloseButton {
@@ -147,7 +182,8 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: fit-content;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .primary-info {
@@ -183,6 +219,15 @@
 
 .CardFooter p {
   margin: 0;
+}
+
+.ResetButton {
+  width: 100%;
+  padding: 8px;
+  background-color: #f6f8fa;
+  border: 1px solid #d1d5da;
+  cursor: pointer;
+  margin-top: 16px;
 }
 
 /* Mobile Responsiveness */

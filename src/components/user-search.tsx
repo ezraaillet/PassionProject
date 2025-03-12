@@ -128,7 +128,9 @@ export default function UserSearch({ user }: UserSearchProps) {
       </div>
       <div className="SearchContent">
         {filtered.length === 0 && (
-          <h1>No sponsors found matching your criteria.</h1>
+          <h1 className="NoSponsors">
+            No sponsors found matching your criteria.
+          </h1>
         )}
         {filtered.map((sponsor) => (
           <div className="Card" key={sponsor.id}>
