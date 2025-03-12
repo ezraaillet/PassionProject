@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 import Footer from "./common/footer";
 import Header from "./common/header";
 import LandingPage from "./components/landing-page";
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <LandingPage />
       <Footer />
-      <Analytics />
+      {/* <Analytics /> */}
     </div>
   );
 }

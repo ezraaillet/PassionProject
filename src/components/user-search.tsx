@@ -128,7 +128,9 @@ export default function UserSearch({ user }: UserSearchProps) {
       </div>
       <div className="SearchContent">
         {filtered.length === 0 && (
-          <h1>No sponsors found matching your criteria.</h1>
+          <h1 className="NoSponsors">
+            No sponsors found matching your criteria.
+          </h1>
         )}
         {filtered.map((sponsor) => (
           <div className="Card" key={sponsor.id}>
@@ -145,63 +147,95 @@ export default function UserSearch({ user }: UserSearchProps) {
               </a>
             </div>
             <div className="CardBody">
-              <span>
+              {/* Primary Information */}
+              <div className="primary-info">
                 {sponsor.sponsorHomeGroup && (
-                  <p>{`Home Group: ${getLabelByValue(
-                    sponsor.sponsorHomeGroup
-                  )}`}</p>
+                  <p>
+                    <strong>Home Group:</strong>{" "}
+                    {getLabelByValue(sponsor.sponsorHomeGroup)}
+                  </p>
                 )}
-                {sponsor.sponsorAge && <p>{`Age: ${sponsor.sponsorAge}`}</p>}
                 {sponsor.sponsorGender && (
-                  <p>{`Gender: ${sponsor.sponsorGender}`}</p>
+                  <p>
+                    <strong>Gender:</strong> {sponsor.sponsorGender}
+                  </p>
+                )}
+                {sponsor.sponsorAge && (
+                  <p>
+                    <strong>Age:</strong> {sponsor.sponsorAge}
+                  </p>
                 )}
                 {sponsor.sponsorState && (
-                  <p>{`State: ${sponsor.sponsorState}`}</p>
+                  <p>
+                    <strong>State:</strong> {sponsor.sponsorState}
+                  </p>
                 )}
-              </span>
+              </div>
 
-              <span>
+              {/* Secondary Information */}
+              <div className="secondary-info">
                 {sponsor.sponsorZipcode && (
-                  <p>{`Zip Code: ${sponsor.sponsorZipcode}`}</p>
+                  <p>
+                    <strong>Zip Code:</strong> {sponsor.sponsorZipcode}
+                  </p>
                 )}
                 {sponsor.sponsorFaith && (
-                  <p>{`Religion: ${sponsor.sponsorFaith}`}</p>
+                  <p>
+                    <strong>Religion:</strong> {sponsor.sponsorFaith}
+                  </p>
                 )}
-                {sponsor.sponsorJob && <p>{`Job: ${sponsor.sponsorJob}`}</p>}
+                {sponsor.sponsorJob && (
+                  <p>
+                    <strong>Job:</strong> {sponsor.sponsorJob}
+                  </p>
+                )}
                 {sponsor.sponsorAvailability && (
-                  <p>{`Availability: ${sponsor.sponsorAvailability}`}</p>
+                  <p>
+                    <strong>Availability:</strong> {sponsor.sponsorAvailability}
+                  </p>
                 )}
-              </span>
+              </div>
 
-              <span>
+              {/* Additional Details */}
+              <div className="additional-details">
                 {sponsor.sponsorMotto && (
-                  <p>{`Motto: ${sponsor.sponsorMotto}`}</p>
+                  <p>
+                    <strong>Motto:</strong> {sponsor.sponsorMotto}
+                  </p>
                 )}
-                {sponsor.sponsorBio && <p>{`Bio: ${sponsor.sponsorBio}`}</p>}
                 {sponsor.sponsorNumberOfSponsees && (
-                  <p>{`Number of Sponsees: ${sponsor.sponsorNumberOfSponsees}`}</p>
+                  <p>
+                    <strong>Number of Sponsees:</strong>{" "}
+                    {sponsor.sponsorNumberOfSponsees}
+                  </p>
                 )}
                 {sponsor.sponsorTimeForSteps && (
-                  <p>{`Time for Steps: ${sponsor.sponsorTimeForSteps}`}</p>
+                  <p>
+                    <strong>Time for Steps:</strong>{" "}
+                    {sponsor.sponsorTimeForSteps}
+                  </p>
                 )}
-              </span>
+              </div>
 
-              <span>
+              {/* Other Information */}
+              <div className="other-info">
                 {sponsor.sponsorIntensityLevel && (
-                  <p>{`Intensity Level: ${sponsor.sponsorIntensityLevel}`}</p>
+                  <p>
+                    <strong>Intensity Level:</strong>{" "}
+                    {sponsor.sponsorIntensityLevel}
+                  </p>
                 )}
                 {sponsor.sponsorRecoveryTime && (
-                  <p>{`Recovery Time: ${sponsor.sponsorRecoveryTime}`}</p>
+                  <p>
+                    <strong>Recovery Time:</strong>{" "}
+                    {sponsor.sponsorRecoveryTime}
+                  </p>
                 )}
-                {sponsor.email && <p>{`Email: ${sponsor.email}`}</p>}
-                {sponsor.sponsorPhone && (
-                  <p>{`Phone: ${sponsor.sponsorPhone}`}</p>
-                )}
-              </span>
+              </div>
             </div>
 
             <div className="CardFooter">
-              <p>bio: </p>
+              <p>Bio: </p>
               <p>{sponsor.sponsorBio}</p>
             </div>
           </div>
