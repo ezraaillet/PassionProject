@@ -29,6 +29,16 @@ export default function LandingPage() {
     );
   };
 
+  const referFriend = () => {
+    const link = window.location.href; // Get current page URL
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        addNotification("Link copied to clipboard!", "success");
+      })
+      .catch((err) => console.error("Failed to copy:", err));
+  };
+
   useEffect(() => {
     const checkUserAccount = async () => {
       if (user?.email) {
@@ -77,18 +87,15 @@ export default function LandingPage() {
           <div className="about-section">
             <h1>About</h1>
             <p>
-              Welcome to our website, where we provide innovative solutions to
-              meet your needs. Our platform offers a seamless experience,
-              ensuring you have all the tools you need at your fingertips.
-              Explore our services, learn more about what we do, and get in
-              touch with our team today.
+              Welcome to Passion Project. This website is designed to support
+              those seeking to become more available as sponsors, as well as to
+              serve as a resource for individuals looking for a sponsor in
+              12-step programs. Our goal is not to replace traditional methods
+              of connection within 12-step programs but to enhance and
+              streamline the process, ensuring more people have the opportunity
+              to experience recovery.
             </p>
-            <span
-              onClick={() =>
-                addNotification("Link copied to clipboard!", "success")
-              }
-              className="share-button"
-            >
+            <span onClick={() => referFriend()} className="share-button">
               Refer a friend
             </span>
           </div>
