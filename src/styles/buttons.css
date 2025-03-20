@@ -41,7 +41,7 @@
 }
 
 .share-button {
-  margin-top: 5px;
+  margin-top: 15px;
   color: var(--primary-color);
   position: relative;
   cursor: pointer;
@@ -89,5 +89,12 @@
   .account-type-button-container {
     flex-direction: column;
     gap: 1%;
+  }
+
+  .about-section p {
+    font-family: "Delius Swash Caps", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
   }
 }
