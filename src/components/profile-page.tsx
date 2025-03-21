@@ -61,7 +61,8 @@ export default function ProfilePage({ user }: any) {
     setAccountBeingDeleted(true); // Show the spinner
 
     try {
-      await Promise.all([deleteUserByEmail(userProfile.email), logout()]);
+      await deleteUserByEmail(userProfile.email); // Call the service to delete the account
+      await logout();
       setAccountBeingDeleted(false); // Stop showing the spinner
       setAccountDeleted(true); // Trigger redirection to the landing page
     } catch (error) {
