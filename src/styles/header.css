@@ -6,8 +6,7 @@
   align-items: center;
   background-color: hsl(35, 100, 95);
   padding: 10px 0;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #797979;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   text-wrap: nowrap;
 }
 
