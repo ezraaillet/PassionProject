@@ -1,5 +1,7 @@
 import { FormEvent, useState } from "react";
 
+import { useSponsorWorkflowContext } from "./sponsor-workflow-context";
+
 interface IFormInputProps {
   type?: string;
   name: string;
@@ -27,6 +29,7 @@ export default function FormInput({
   validationMessage,
 }: IFormInputProps) {
   const [error, setError] = useState("");
+  const sponsorWorkflowContext = useSponsorWorkflowContext();
 
   if (options && type) throw new Error("Cannot use both options and type");
 
@@ -38,6 +41,9 @@ export default function FormInput({
       | HTMLTextAreaElement
       | HTMLSelectElement;
 
+    if (input.type === "select-one" && input.value === "custom") {
+      sponsorWorkflowContext?.setCustomHomeGroup(true);
+    }
     setError(input.validationMessage ? input.validationMessage ?? "" : "");
   };
 

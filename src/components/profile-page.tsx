@@ -92,7 +92,7 @@ export default function ProfilePage({ user }: any) {
 
   const getLabelByValue = (value: string) => {
     const group = homegroups.find((group) => group.value === value);
-    return group ? group.label : "Not Found";
+    return group ? group.label : value;
   };
 
   const handleInputChange = (key: keyof UserProfile, value: string) => {

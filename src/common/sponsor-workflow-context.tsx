@@ -1,7 +1,6 @@
 import { FormEvent, createContext, useContext, useState } from "react";
 
 import UserService from "../services/user-service";
-import { json } from "stream/consumers";
 
 interface SponsorWorkflowFormData {
   sponsorState: string;
@@ -49,6 +48,8 @@ const SponsorWorkflowContext = createContext<{
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
   workflowStep: number;
   handleBackClick: () => void;
+  customHomeGroup: boolean;
+  setCustomHomeGroup: (value: any) => void;
 }>({
   formData: {} as SponsorWorkflowFormData,
   setFormData: () => {},
@@ -57,10 +58,13 @@ const SponsorWorkflowContext = createContext<{
   handleSubmit: () => {},
   workflowStep: 1,
   handleBackClick: () => {},
+  customHomeGroup: false,
+  setCustomHomeGroup: () => {},
 });
 
 const SponsorWorkflowProvider = ({ children }: { children: any }) => {
   const [workflowStep, setWorkflowStep] = useState(1);
+  const [customHomeGroup, setCustomHomeGroup] = useState(false);
   const { createUser } = UserService();
   const [formData, setFormData] = useState({
     sponsorState: "",
@@ -130,6 +134,7 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
   const handleBackClick = () => {
     if (workflowStep === 1) {
       // clear forms and errors
+      setCustomHomeGroup(false);
       setFormData({
         sponsorState: "",
         sponsorZipcode: "",
@@ -180,6 +185,8 @@ const SponsorWorkflowProvider = ({ children }: { children: any }) => {
     handleSubmit,
     workflowStep,
     handleBackClick,
+    customHomeGroup,
+    setCustomHomeGroup,
   };
 
   return (

@@ -24,13 +24,23 @@ export default function SponsorPageOne({ backClicked }: SponsorWorkflowProps) {
           onSubmit={sponsorWorkflowContext?.handleSubmit}
           noValidate
         >
-          <FormInput
-            label="Home Group"
-            required={true}
-            name="sponsorHomeGroup"
-            value={sponsorWorkflowContext?.formData.sponsorHomeGroup}
-            options={homegroups}
-          />
+          {!sponsorWorkflowContext?.customHomeGroup ? (
+            <FormInput
+              label="Home Group"
+              required={true}
+              name="sponsorHomeGroup"
+              value={sponsorWorkflowContext?.formData.sponsorHomeGroup}
+              options={homegroups}
+            />
+          ) : (
+            <FormInput
+              type="text"
+              label="Home Group"
+              required={true}
+              name="sponsorHomeGroup"
+              value={sponsorWorkflowContext?.formData.sponsorHomeGroup}
+            />
+          )}
 
           <FormInput
             label="State"

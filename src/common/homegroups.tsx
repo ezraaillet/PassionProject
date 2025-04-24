@@ -1,5 +1,6 @@
 export const homegroups = [
   { value: "", label: "Select your home group" },
+  { value: "custom", label: "Other" },
   { value: "share_and_care_group", label: "Share & Care Group" },
   { value: "there_is_a_solution", label: "There Is A Solution" },
   { value: "kitchen_table", label: "Kitchen Table" },
