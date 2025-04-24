@@ -9,6 +9,7 @@
   margin: 20px;
   background-color: var(--background-color);
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .ProfileEmail {
@@ -22,6 +23,12 @@
   padding: 20px;
   align-items: center;
   border-bottom: 1px solid black;
+}
+
+.ProfilePageHeader div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .ProfilePageHeader h1 {
@@ -40,6 +47,8 @@
   flex-direction: column;
   align-items: left;
   justify-content: space-between;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .ProfilePageDataPair {
@@ -55,7 +64,7 @@ p {
 }
 
 .ProfilePageDataTitle {
-  /* width: 120px; */
+  width: 120px;
   text-align: left;
 }
 
@@ -132,6 +141,55 @@ p {
   background-color: white;
   border-radius: 4px;
   padding: 5px 10px;
+}
+
+/* Editing mode input fields */
+.ProfilePageDataInput {
+  background-color: #f0f4ff;
+  border: 1px solid var(--primary-color);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-left: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.ProfilePageDataInput:focus {
+  outline: none;
+  border-color: #1a48e3;
+  box-shadow: 0 0 5px rgba(26, 72, 227, 0.3);
+}
+
+/* Buttons for editing actions */
+.save-button,
+.cancel-button {
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.cancel-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Button row wrapper */
+.EditActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 20px;
 }
 
 @media screen and (max-width: 768px) {

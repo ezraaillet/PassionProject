@@ -1,11 +1,10 @@
 import "../styles/profile.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import DisableAccount from "./disable-account";
 import LandingPage from "./landing-page";
 import UserService from "../services/user-service";
-import { get } from "http";
 import { homegroups } from "../common/homegroups";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -31,10 +30,13 @@ interface UserProfile {
 
 export default function ProfilePage({ user }: any) {
   const { deleteUserByEmail } = UserService();
-  const [open, setOpen] = useState(false); // For showing the confirmation popup
-  const [accountBeingDeleted, setAccountBeingDeleted] = useState(false); // For showing the spinner
-  const [accountDeleted, setAccountDeleted] = useState(false); // For redirecting to the landing page
   const { logout } = useAuth0();
+
+  const [open, setOpen] = useState(false);
+  const [accountBeingDeleted, setAccountBeingDeleted] = useState(false);
+  const [accountDeleted, setAccountDeleted] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
   const [userProfile, setUserProfile] = useState<UserProfile>({
     state: user.sponsorState || "",
     zipcode: user.sponsorZipcode || "",
@@ -55,18 +57,34 @@ export default function ProfilePage({ user }: any) {
     recoveryTime: user.sponsorRecoveryTime || "",
   });
 
-  // Handles the delete process
+  const fieldLabels = [
+    { key: "homeGroup", label: "Home Group" },
+    { key: "state", label: "State" },
+    { key: "zipcode", label: "Zip Code" },
+    { key: "gender", label: "Gender" },
+    { key: "motto", label: "Motto" },
+    { key: "age", label: "Age" },
+    { key: "numberOfSponsees", label: "Sponsees" },
+    { key: "recoveryTime", label: "Recovery Time" },
+    { key: "bio", label: "Bio" },
+    { key: "availability", label: "Availability" },
+    { key: "faith", label: "Faith" },
+    { key: "timeForSteps", label: "Time for Steps" },
+    { key: "intensityLevel", label: "Intensity" },
+    { key: "job", label: "Job" },
+  ];
+
   async function startDeleteAccount() {
-    setOpen(false); // Close the confirmation popup
-    setAccountBeingDeleted(true); // Show the spinner
+    setOpen(false);
+    setAccountBeingDeleted(true);
 
     try {
-      await deleteUserByEmail(userProfile.email); // Call the service to delete the account
+      await deleteUserByEmail(userProfile.email);
       await logout();
-      setAccountBeingDeleted(false); // Stop showing the spinner
-      setAccountDeleted(true); // Trigger redirection to the landing page
+      setAccountBeingDeleted(false);
+      setAccountDeleted(true);
     } catch (error) {
-      setAccountBeingDeleted(false); // Stop the spinner even on failure
+      setAccountBeingDeleted(false);
       console.error("Failed to delete the account:", error);
       alert("An error occurred while deleting the account. Please try again.");
     }
@@ -77,20 +95,30 @@ export default function ProfilePage({ user }: any) {
     return group ? group.label : "Not Found";
   };
 
+  const handleInputChange = (key: keyof UserProfile, value: string) => {
+    setUserProfile((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const saveChanges = async () => {
+    // TODO: call updateUserProfile(userProfile) here if needed
+    setIsEditing(false);
+  };
+
   if (accountDeleted) {
     return <LandingPage />;
   }
 
   return (
     <>
-      {/* Show the loading spinner during deletion */}
       {accountBeingDeleted && (
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
       )}
 
-      {/* Show the confirmation popup */}
       {open && (
         <DisableAccount
           open={open}
@@ -100,50 +128,78 @@ export default function ProfilePage({ user }: any) {
         />
       )}
 
-      {/* Main profile page */}
       {!accountBeingDeleted && (
         <div className="ProfilePageContainer">
           <div className="ProfilePageHeader">
-            <h1>{userProfile.name}</h1>
+            <div>
+              <h1>{userProfile.name}</h1>
+              {!isEditing ? (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="edit-profile-button"
+                  type="button"
+                >
+                  Edit Profile
+                </button>
+              ) : (
+                <>
+                  <button className="save-button" onClick={saveChanges}>
+                    Save
+                  </button>
+                  <button
+                    className="cancel-button"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    Cancel
+                  </button>
+                </>
+              )}
+            </div>
             <span className="ProfileContactInfo">
               <p className="ProfileEmail">{userProfile.phone}</p>
               <p className="ProfileEmail">{userProfile.email}</p>
             </span>
           </div>
+
           <div className="ProfilePageData">
-            {[
-              {
-                label: "Home Group",
-                value: getLabelByValue(userProfile.homeGroup),
-              },
-              { label: "State", value: userProfile.state },
-              { label: "Zip Code", value: userProfile.zipcode },
-              { label: "Gender", value: userProfile.gender },
-              { label: "Motto", value: userProfile.motto },
-              { label: "Age", value: userProfile.age },
-              { label: "Sponsees", value: userProfile.numberOfSponsees },
-              { label: "Recovery Time", value: userProfile.recoveryTime },
-              { label: "Bio", value: userProfile.bio },
-              { label: "Availability", value: userProfile.availability },
-              { label: "Faith", value: userProfile.faith },
-              { label: "Time for Steps", value: userProfile.timeForSteps },
-              { label: "Intensity", value: userProfile.intensityLevel },
-              { label: "Job", value: userProfile.job },
-            ]
-              .filter((field) => field.value) // Only keep fields with a non-empty value
+            {fieldLabels
+              .filter((field) => userProfile[field.key as keyof UserProfile])
               .map((field, index) => (
                 <div className="ProfilePageDataPair" key={index}>
                   <p className="ProfilePageDataTitle">
                     <strong>{field.label}:</strong>
                   </p>
-                  <p className="ProfilePageDataValue">{field.value}</p>
+                  {isEditing ? (
+                    <input
+                      className="ProfilePageDataInput"
+                      type="text"
+                      value={
+                        field.key === "homeGroup"
+                          ? getLabelByValue(userProfile.homeGroup)
+                          : userProfile[field.key as keyof UserProfile]
+                      }
+                      onChange={(e) =>
+                        handleInputChange(
+                          field.key as keyof UserProfile,
+                          e.target.value
+                        )
+                      }
+                    />
+                  ) : (
+                    <p className="ProfilePageDataValue">
+                      {field.key === "homeGroup"
+                        ? getLabelByValue(userProfile.homeGroup)
+                        : userProfile[field.key as keyof UserProfile]}
+                    </p>
+                  )}
                 </div>
               ))}
           </div>
+
           <div className="ButtonContainer">
             <button
               onClick={() => setOpen(true)}
-              className="global-button"
+              className="global-button profile"
               type="button"
             >
               Disable Account
