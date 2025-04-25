@@ -45,7 +45,6 @@
   width: fit-content;
 }
 
-
 /* .ProfilePageHeader {
   display: flex;
   flex-direction: row;
@@ -96,6 +95,7 @@ p {
   width: 120px;
   text-align: left;
   padding-left: 10px;
+  white-space: nowrap;
 }
 
 .ButtonContainer {

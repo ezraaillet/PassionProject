@@ -27,6 +27,30 @@ export default function UserService() {
     }
   }
 
+  async function updateUser(userToUpdate: any) {
+    try {
+      const response = await fetch(
+        `https://passionprojectfunctionapp.azurewebsites.net/api/UpdateUser?code=EesubKW4mgAHTsRE-aQ6bBHl4QFFfznIJ9XjX6zBxLmbAzFuoLRjVA==`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userToUpdate),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      return await response.text(); // Return the response data
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
+  }
+
   async function getUserByEmail(email: string) {
     try {
       const response = await fetch(`${prodUrl}/GetUserByEmail?email=${email}`, {
@@ -105,5 +129,6 @@ export default function UserService() {
     getUserByEmail,
     getUsersByTypeAndState,
     deleteUserByEmail,
+    updateUser,
   };
 }
