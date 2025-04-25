@@ -53,6 +53,16 @@
   transition: color 0.3s ease-in-out;
 }
 
+.edit-profile-button {
+  margin-left: 20px;
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  transition: color 0.3s ease-in-out;
+  padding: 10px;
+}
+
 .share-button:hover {
   color: #fff;
 }

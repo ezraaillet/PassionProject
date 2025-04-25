@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function UserService() {
   const prodUrl: string = process.env.REACT_APP_PROD_API_URL!;
+  const updateUserCode: string = process.env.REACT_APP_UPDATE_USER_CODE!;
   const { user } = useAuth0();
 
   async function createUser(userToInsert: any, userType: number) {
@@ -23,6 +24,30 @@ export default function UserService() {
       return await response.text(); // Return the response data
     } catch (error) {
       console.error("Error creating user:", error);
+      throw error;
+    }
+  }
+
+  async function updateUser(userToUpdate: any) {
+    try {
+      const response = await fetch(
+        `${prodUrl}/UpdateUser?code=${updateUserCode}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userToUpdate),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      return await response.text(); // Return the response data
+    } catch (error) {
+      console.error("Error updating user:", error);
       throw error;
     }
   }
@@ -105,5 +130,6 @@ export default function UserService() {
     getUserByEmail,
     getUsersByTypeAndState,
     deleteUserByEmail,
+    updateUser,
   };
 }
