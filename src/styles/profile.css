@@ -84,7 +84,8 @@
   flex-direction: column;
   position: relative;
   font-size: 18px;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  border-radius: 8px;
 }
 
 p {
@@ -94,6 +95,7 @@ p {
 .ProfilePageDataTitle {
   width: 120px;
   text-align: left;
+  padding-left: 10px;
 }
 
 .ButtonContainer {
@@ -167,23 +169,28 @@ p {
   padding: 5px 10px;
 }
 
-/* Editing mode input fields */
+.ProfilePageDataValue {
+  padding: 7px 11px;
+  color: black;
+  height: 100%;
+  font-size: 16px;
+}
+
+/* Input in Editing Mode */
 .ProfilePageDataInput {
-  background-color: #f0f4ff;
-  border: 1px solid var(--primary-color);
+  background-color: transparent;
+  color: black;
+  border: 1px solid var(--accent-color);
   padding: 6px 10px;
   border-radius: 8px;
   font-size: 16px;
-  margin-left: 10px;
   width: 100%;
-  max-width: 400px;
   box-sizing: border-box;
 }
 
 .ProfilePageDataInput:focus {
   outline: none;
-  border-color: #1a48e3;
-  box-shadow: 0 0 5px rgba(26, 72, 227, 0.3);
+  border-color: var(--accent-color);
 }
 
 /* Buttons for editing actions */

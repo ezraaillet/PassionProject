@@ -91,10 +91,10 @@ export default function ProfilePage({ user }: any) {
 		}
 	}
 
-  const getLabelByValue = (value: string) => {
-    const group = homegroups.find((group) => group.value === value);
-    return group ? group.label : value;
-  };
+	const getLabelByValue = (value: string) => {
+		const group = homegroups.find((group) => group.value === value);
+		return group ? group.label : value;
+	};
 
 	const handleInputChange = (key: keyof UserProfile, value: string) => {
 		setUserProfile((prev) => ({
@@ -138,11 +138,19 @@ export default function ProfilePage({ user }: any) {
 							<p>{userProfile.email}</p>
 						</div>
 						<div className="HeaderEdit">
-							<Pencil className="pointer" size={24} color="#000" />
-
-							{/* USE THESE WHEN YOU IMPLEMENT THE EDIT BUTTON */}
-							{/* <X /> */}
-							{/* <Save /> */}
+							{isEditing ? (
+								<>
+									<X className="pointer delete-button" size={24} color="#000" onClick={() => setIsEditing(false)} />
+									<Save className="pointer" size={24} color="#000" onClick={saveChanges} />
+								</>
+							) : (
+								<Pencil
+									className="pointer"
+									size={24}
+									color="#000"
+									onClick={() => setIsEditing(true)}
+								/>
+							)}
 						</div>
 						{/* <div>
               <h1>{userProfile.name}</h1>
