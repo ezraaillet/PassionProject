@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function UserService() {
   const prodUrl: string = process.env.REACT_APP_PROD_API_URL!;
+  const updateUserCode: string = process.env.REACT_APP_UPDATE_USER_CODE!;
   const { user } = useAuth0();
 
   async function createUser(userToInsert: any, userType: number) {
@@ -30,7 +31,7 @@ export default function UserService() {
   async function updateUser(userToUpdate: any) {
     try {
       const response = await fetch(
-        `https://passionprojectfunctionapp.azurewebsites.net/api/UpdateUser?code=EesubKW4mgAHTsRE-aQ6bBHl4QFFfznIJ9XjX6zBxLmbAzFuoLRjVA==`,
+        `${prodUrl}/UpdateUser?code=${updateUserCode}`,
         {
           method: "POST",
           headers: {
